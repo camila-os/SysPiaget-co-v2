@@ -1,0 +1,233 @@
+/* ==============================
+   FUENTES GLOBALES
+============================== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Sistema de colores unificado */
+  --color-primary: #252861;
+  --color-secondary: #1a1c49;
+  --color-accent: #C41014;
+  --color-white: #ffffff;
+  --color-text-light: rgba(255, 255, 255, 0.9);
+  
+  /* Transiciones */
+  --transition-normal: 0.3s ease;
+}
+
+/* ==============================
+   HEADER / PERFIL MEJORADO
+============================== */
+.header-perf {
+  background-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  border-bottom: 5px solid var(--color-accent);
+  position: relative;
+  z-index: 100;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Bloque izquierdo: logo + info */
+.logo-container {
+  margin-left: -40px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-perf {
+  margin-top: 10px;
+  width: 145px;
+  height: 145px;
+}
+
+.logo-image {
+  margin-left: 60px;
+  margin-top: 6px;
+  width: 52%;
+  height: 90%;
+  object-fit: contain;
+}
+
+/* Texto institucional */
+.instituto-info {
+  margin-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.05;
+  color: var(--color-white);
+}
+
+.instituto {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 42px;
+}
+
+.jeanpiaget {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  text-transform: capitalize;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.instituto-nro {
+  margin-left: 10px;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+/* Contenedor del UserMenu */
+.user-menu-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 220px;
+  padding-right: 30px;
+}
+
+/* ==============================
+   RESPONSIVE HEADER MEJORADO
+============================== */
+
+/* Tablets / pantallas medianas */
+@media (max-width: 768px) {
+  .header-perf { 
+    height: 140px; 
+    padding: 5px 15px; 
+  }
+  
+  .logo-perf { 
+    width: 100px; 
+    height: 100px; 
+  }
+  
+  .logo-container { 
+    gap: 4px; 
+  }
+  
+  .instituto { 
+    font-size: 35px; 
+  }
+  
+  .jeanpiaget { 
+    font-size: 28px; 
+  }
+  
+  .instituto-nro { 
+    font-size: 16px; 
+  }
+  
+  .user-menu-container { 
+    padding-right: 12px; 
+  }
+}
+
+/* Smartphones grandes / S20 Ultra */
+@media (max-width: 430px) {
+  .header-perf { 
+    height: 120px; 
+    padding: 0 12px; 
+  }
+  
+  .logo-perf { 
+    width: 85px; 
+    height: 85px; 
+  }
+  
+  .logo-container { 
+    gap: 3px; 
+  }
+  
+  .instituto { 
+    font-size: 28px; 
+  }
+  
+  .jeanpiaget { 
+    font-size: 24px; 
+  }
+  
+  .instituto-nro { 
+    font-size: 14px; 
+  }
+  
+  .user-menu-container { 
+    padding-right: 10px; 
+  }
+}
+
+/* Smartphones pequeños / ≤360px */
+@media (max-width: 360px) {
+  .header-perf { 
+    height: 110px; 
+    padding: 0 8px; 
+  }
+  
+  .logo-perf { 
+    width: 75px; 
+    height: 75px; 
+  }
+  
+  .logo-container { 
+    gap: 2px; 
+  }
+  
+  .instituto { 
+    font-size: 24px; 
+  }
+  
+  .jeanpiaget { 
+    font-size: 20px; 
+  }
+  
+  .instituto-nro { 
+    font-size: 12px; 
+  }
+  
+  .user-menu-container { 
+    padding-right: 8px; 
+  }
+}
+
+/* Smartphones muy pequeños / ≤320px */
+@media (max-width: 320px) {
+  .header-perf { 
+    height: 100px; 
+    padding: 0 6px; 
+  }
+  
+  .logo-perf { 
+    width: 65px; 
+    height: 65px; 
+  }
+  
+  .logo-container { 
+    gap: 1px; 
+  }
+  
+  .instituto { 
+    font-size: 20px; 
+  }
+  
+  .jeanpiaget { 
+    font-size: 18px; 
+  }
+  
+  .instituto-nro { 
+    font-size: 10px; 
+  }
+  
+  .user-menu-container { 
+    padding-right: 6px; 
+  }
+}

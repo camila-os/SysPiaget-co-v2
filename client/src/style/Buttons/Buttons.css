@@ -1,0 +1,152 @@
+:root {
+  --color-primary: #252861;
+  --color-secondary: #1a1c49;
+  --color-accent: #C41014;
+  --color-accent-hover: #E30613;
+  --color-gray: #495057;
+  --color-gray-hover: #6c757d;
+  --color-white: #ffffff;
+  --color-text-light: rgba(255, 255, 255, 0.9);
+}
+
+/* Base del botón */
+.btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn:disabled:hover {
+  box-shadow: none;
+}
+
+/* Tamaños */
+.btn-small {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.btn-medium {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+
+.btn-large {
+  padding: 16px 32px;
+  font-size: 18px;
+}
+
+
+.btn-square {
+  width: 45px;             /* ancho fijo */
+  height: 45px;            /* alto igual al ancho */
+  padding: 0;              /* quitar padding para mantener cuadrado */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centrar icono */
+}
+
+
+/* Iconos */
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+.button-text {
+  line-height: 1;
+}
+
+/* ========================================== */
+/* VARIANTES SOLID */
+.btn-cancel.btn-solid { background: var(--color-accent); color: var(--color-white); }
+.btn-cancel.btn-solid:hover { background: var(--color-accent-hover); }
+
+.btn-edit.btn-solid { background: var(--color-primary); color: var(--color-text-light); }
+.btn-edit.btn-solid:hover { background: var(--color-secondary); }
+
+.btn-next.btn-solid { background: var(--color-primary); color: var(--color-text-light); }
+.btn-next.btn-solid:hover { background: var(--color-secondary); }
+
+.btn-delete.btn-solid { background: var(--color-accent); color: var(--color-white); }
+.btn-delete.btn-solid:hover { background: var(--color-accent-hover); }
+
+.btn-home.btn-solid { background: var(--color-secondary); color: var(--color-text-light); }
+.btn-home.btn-solid:hover { background: var(--color-primary); }
+
+.btn-back.btn-solid { background: var(--color-gray); color: var(--color-white); }
+.btn-back.btn-solid:hover { background: var(--color-gray-hover); }
+
+/* ========================================== */
+/* VARIANTES OUTLINE */
+.btn-outline {
+  background: transparent;
+  border: 2px solid;
+}
+
+.btn-cancel.btn-outline { border-color: var(--color-accent); color: var(--color-accent); }
+.btn-cancel.btn-outline:hover { background: var(--color-accent); color: var(--color-white); }
+
+.btn-edit.btn-outline { border-color: var(--color-primary); color: var(--color-primary); }
+.btn-edit.btn-outline:hover { background: var(--color-primary); color: var(--color-text-light); }
+
+.btn-next.btn-outline { border-color: var(--color-primary); color: var(--color-primary); }
+.btn-next.btn-outline:hover { background: var(--color-primary); color: var(--color-text-light); }
+
+.btn-delete.btn-outline { border-color: var(--color-accent); color: var(--color-accent); }
+.btn-delete.btn-outline:hover { background: var(--color-accent); color: var(--color-white); }
+
+.btn-home.btn-outline { border-color: var(--color-secondary); color: var(--color-secondary); }
+.btn-home.btn-outline:hover { background: var(--color-secondary); color: var(--color-text-light); }
+
+.btn-back.btn-outline { border-color: var(--color-gray); color: var(--color-gray); }
+.btn-back.btn-outline:hover { background: var(--color-gray); color: var(--color-white); }
+
+/* ========================================== */
+/* VARIANTES GHOST */
+.btn-ghost {
+  background: transparent;
+  border: none;
+  color: var(--color-gray);
+}
+
+.btn-cancel.btn-ghost:hover { background: rgba(196,16,20,0.1); color: var(--color-accent); }
+.btn-edit.btn-ghost:hover { background: rgba(37,40,97,0.1); color: var(--color-primary); }
+.btn-next.btn-ghost:hover { background: rgba(37,40,97,0.1); color: var(--color-primary); }
+.btn-delete.btn-ghost:hover { background: rgba(196,16,20,0.1); color: var(--color-accent); }
+.btn-home.btn-ghost:hover { background: rgba(26,28,73,0.1); color: var(--color-secondary); }
+.btn-back.btn-ghost:hover { background: rgba(73,80,87,0.1); color: var(--color-gray-hover); }
+
+/* ========================================== */
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .btn { padding: 10px 20px; font-size: 14px; }
+  .icon { width: 16px; height: 16px; }
+}

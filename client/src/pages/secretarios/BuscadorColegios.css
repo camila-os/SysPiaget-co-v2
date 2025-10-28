@@ -1,0 +1,112 @@
+/* src/components/BuscadorColegios.css */
+.buscador-colegios {
+  position: relative;
+  width: 100%;
+}
+
+.buscador-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.buscador-input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.buscador-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.buscador-input:disabled {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.buscador-limpiar {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #6c757d;
+  padding: 4px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buscador-limpiar:hover {
+  background-color: #f8f9fa;
+  color: #dc3545;
+}
+
+.dropdown-colegios {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #e1e5e9;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #f8f9fa;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.colegio-numero {
+  background: #011dbe;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 12px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.colegio-nombre {
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+}
+
+.dropdown-no-results {
+  padding: 12px;
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+}

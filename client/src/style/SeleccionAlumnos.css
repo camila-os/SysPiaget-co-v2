@@ -1,0 +1,397 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Sistema de diseño - Colores */
+  --color-primary: #252861;
+  --color-secondary: #1a1c49;
+  --color-accent: #C41014;
+  --color-accent-hover: #E30613;
+  --color-gray: #495057;
+  --color-gray-hover: #6c757d;
+  --color-white: #ffffff;
+  --color-success: #28a745;
+  --color-warning: #ffc107;
+  --color-danger: #dc3545;
+  --color-background: rgba(255, 255, 255, 0.98);
+  
+  /* Sistema de diseño - Espaciados (reducidos ~15%) */
+  --spacing-xs: 6.5px;
+  --spacing-sm: 8.5px;
+  --spacing-md: 13px;
+  --spacing-lg: 17px;
+  --spacing-xl: 21px;
+  --spacing-xxl: 25px;
+  
+  /* Sistema de diseño - Tipografía (reducida ~12%) */
+  --font-size-sm: 14.5px;
+  --font-size-base: 15.5px;
+  --font-size-lg: 17.5px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 22px;
+  
+  /* Border radius */
+  --border-radius-sm: 6.5px;
+  --border-radius-md: 8.5px;
+  
+  /* Transiciones */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* CONTENEDOR PRINCIPAL - MÁS COMPACTO */
+.alumno-form-container {
+  max-width: 1100px; /* Reducido de 1200px */
+  margin: 0 auto;
+  padding: var(--spacing-lg); /* Reducido de xl */
+  font-family: "Lexend", sans-serif;
+  background: var(--color-background);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Sombra más suave */
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* HEADER DEL FORMULARIO - MÁS COMPACTO */
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg); /* Reducido de xl */
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  border-bottom: 2px solid var(--color-accent); /* Reducido de 3px */
+  padding-bottom: var(--spacing-md); /* Reducido de lg */
+}
+
+.form-header h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: var(--font-size-xl); /* Reducido de xxl */
+  color: var(--color-primary);
+  font-weight: 700;
+  margin: 0;
+  flex: 1;
+}
+
+/* FORMULARIO PRINCIPAL */
+.alumno-form {
+  width: 100%;
+}
+
+/* SECCIÓN DEL FORMULARIO - MÁS COMPACTA */
+.form-section {
+  background: rgba(255, 255, 255, 0.95);
+  padding: var(--spacing-lg); /* Reducido de xl */
+  border-radius: var(--border-radius-md);
+  border: 1.5px solid rgba(0, 0, 0, 0.08); /* Reducido de 2px */
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06); /* Sombra más suave */
+  margin-bottom: var(--spacing-md); /* Reducido de lg */
+}
+
+.form-section h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: var(--font-size-lg); /* Reducido de xl */
+  color: var(--color-secondary);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md); /* Reducido de lg */
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1.5px solid #e9ecef; /* Reducido de 2px */
+  grid-column: 1 / -1;
+}
+
+/* GRID DEL FORMULARIO - 3 COLUMNAS PARA MÁS HORIZONTALIDAD */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Cambiado de 2 a 3 columnas */
+  gap: var(--spacing-md); /* Reducido de lg */
+  margin-bottom: 0;
+}
+
+/* GRUPOS DE FORMULARIO MÁS COMPACTOS */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-sm); /* Reducido de md */
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* ETIQUETAS MÁS COMPACTAS */
+.form-label {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: var(--font-size-sm); /* Reducido de base */
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: 5px; /* Reducido de xs */
+  letter-spacing: 0.4px; /* Reducido ligeramente */
+}
+
+/* CAMPOS DE ENTRADA MÁS COMPACTOS */
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: var(--spacing-sm); /* Reducido de md */
+  border: 1.5px solid #e9ecef; /* Reducido de 2px */
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-base);
+  font-family: "Montserrat", sans-serif;
+  transition: all var(--transition-normal);
+  background: var(--color-white);
+}
+
+.form-input,
+.form-select {
+  height: 40px; /* Reducido de 48px */
+}
+
+.form-textarea {
+  height: auto;
+  min-height: 80px; /* Reducido de 100px */
+  resize: vertical;
+  font-family: "Lexend", sans-serif;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(37, 40, 97, 0.15); /* Reducido de 3px */
+  transform: translateY(-1px);
+}
+
+.form-input.error,
+.form-select.error {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.15); /* Reducido de 3px */
+}
+
+/* MENSAJES DE ERROR MÁS COMPACTOS */
+.error-message {
+  color: var(--color-danger);
+  font-size: 12.5px; /* Reducido de 13.75px */
+  font-family: "Montserrat", sans-serif;
+  margin-top: 4px; /* Reducido de xs */
+  font-weight: 500;
+  height: 16px; /* Reducido de 18px */
+}
+
+/* CONTADOR DE CARACTERES MÁS COMPACTO */
+.char-counter {
+  font-size: 12.5px; /* Reducido de 13.75px */
+  margin-top: 4px; /* Reducido de xs */
+  font-family: "Montserrat", sans-serif;
+  color: var(--color-gray);
+  text-align: right;
+}
+
+/* ACCIONES DEL FORMULARIO MÁS COMPACTAS */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-lg); /* Reducido de xl */
+  margin-bottom: var(--spacing-lg); /* Reducido de xl */
+}
+
+/* BOTONES MÁS COMPACTOS */
+.form-btn {
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md); /* Reducido de md y lg */
+  border-radius: var(--border-radius-sm);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px; /* Reducido de 8px */
+  height: 38px; /* Reducido de 45px */
+  min-width: 170px; /* Reducido de 200px */
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-secondary);
+  transform: translateY(-1px); /* Reducido de 2px */
+  box-shadow: 0 3px 8px rgba(37, 40, 97, 0.2); /* Sombra más suave */
+}
+
+.btn-secondary {
+  background: var(--color-gray);
+  color: var(--color-white);
+}
+
+.btn-secondary:hover {
+  background: var(--color-gray-hover);
+  transform: translateY(-1px); /* Reducido de 2px */
+  box-shadow: 0 3px 8px rgba(108, 117, 125, 0.2); /* Sombra más suave */
+}
+
+.form-btn:disabled {
+  background: var(--color-gray);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.form-btn:disabled:hover {
+  background: var(--color-gray);
+  transform: none;
+  box-shadow: none;
+}
+
+/* PANEL INFORMATIVO MÁS COMPACTO */
+.info-panel {
+  background: rgba(37, 40, 97, 0.05);
+  padding: var(--spacing-md); /* Reducido de lg */
+  border-radius: var(--border-radius-sm);
+  border-left: 3px solid var(--color-accent); /* Reducido de 4px */
+  margin-top: var(--spacing-lg); /* Reducido de xl */
+}
+
+.info-panel h4 {
+  font-family: "Montserrat", sans-serif;
+  color: var(--color-primary);
+  font-size: var(--font-size-base); /* Reducido de lg */
+  margin-bottom: var(--spacing-sm); /* Reducido de md */
+  font-weight: 600;
+}
+
+.info-panel p {
+  font-family: "Lexend", sans-serif;
+  color: var(--color-secondary);
+  font-size: var(--font-size-sm); /* Reducido de base */
+  margin-bottom: 5px; /* Reducido de xs */
+  line-height: 1.4; /* Reducido de 1.5 */
+}
+
+/* ESTADOS DE CARGA Y ERROR MÁS COMPACTOS */
+.loading-text {
+  text-align: center;
+  font-size: var(--font-size-base); /* Reducido de lg */
+  color: var(--color-primary);
+  padding: var(--spacing-xl); /* Reducido de xxl */
+  margin-bottom: var(--spacing-md); /* Reducido de lg */
+}
+
+.error-text {
+  color: var(--color-danger) !important;
+  background: rgba(220, 53, 69, 0.1);
+  border: 1.5px solid var(--color-danger); /* Reducido de 2px */
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-md); /* Reducido de lg */
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: var(--spacing-md); /* Reducido de lg */
+}
+
+/* SELECT PERSONALIZADO */
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23252861' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* Reducido de 12px */
+  background-size: 14px; /* Reducido de 16px */
+  padding-right: 35px; /* Reducido de 40px */
+}
+
+/* RESPONSIVE DESIGN - AJUSTADO PARA LA NUEVA ESTRUCTURA */
+@media (max-width: 992px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .alumno-form-container {
+    padding: var(--spacing-md); /* Reducido de lg */
+    margin: var(--spacing-sm);
+  }
+  
+  .form-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .form-header h2 {
+    margin-bottom: var(--spacing-sm); /* Reducido de md */
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm); /* Reducido de md */
+  }
+  
+  .form-section {
+    padding: var(--spacing-md); /* Reducido de lg */
+  }
+  
+  .form-group.full-width {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 576px) {
+  .alumno-form-container {
+    padding: var(--spacing-sm); /* Reducido de md */
+  }
+  
+  .form-section {
+    padding: var(--spacing-sm); /* Reducido de md */
+  }
+  
+  .form-input,
+  .form-select {
+    padding: 10px; /* Ajustado de sm */
+    height: 38px; /* Reducido de 44px */
+  }
+  
+  .form-btn {
+    padding: 10px 12px; /* Ajustado de sm y md */
+    height: 36px; /* Reducido de 42px */
+    min-width: 140px; /* Reducido de 150px */
+  }
+  
+  .form-header h2 {
+    font-size: var(--font-size-lg); /* Reducido de xl */
+  }
+  
+  .form-section h3 {
+    font-size: var(--font-size-base); /* Reducido de lg */
+  }
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px); /* Reducido de 15px */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* PLACEHOLDER STYLING */
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #adb5bd;
+  font-style: italic;
+  font-size: var(--font-size-sm); /* Reducido de base */
+  font-family: "Lexend", sans-serif;
+}

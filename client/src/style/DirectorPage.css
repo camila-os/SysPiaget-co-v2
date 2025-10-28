@@ -1,0 +1,510 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Sistema de diseño - Colores */
+  --color-primary: #252861;
+  --color-secondary: #1a1c49;
+  --color-accent: #C41014;
+  --color-accent-hover: #E30613;
+  --color-gray: #495057;
+  --color-gray-hover: #6c757d;
+  --color-white: #ffffff;
+  --color-text-light: rgba(255, 255, 255, 0.9);
+  --color-success: #28a745;
+  --color-warning: #ffc107;
+  --color-danger: #dc3545;
+  --color-background: rgba(255, 255, 255, 0.98);
+  
+  /* Espaciados */
+  --spacing-xs: 7.5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --spacing-xl: 25px;
+  --spacing-xxl: 30px;
+  --spacing-xxxl: 35px;
+  
+  /* Tipografía */
+  --font-size-sm: 16.25px;
+  --font-size-base: 17.5px;
+  --font-size-lg: 20px;
+  --font-size-xl: 22.5px;
+  --font-size-xxl: 25px;
+  --font-size-xxxl: 27.5px;
+  
+  /* Border radius */
+  --border-radius-sm: 7.5px;
+  --border-radius-md: 10px;
+  
+  /* Transiciones */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* CONTENEDOR PRINCIPAL - COMO HOME SECRETARIOS */
+.director-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+/* CONTENIDO PRINCIPAL - DEBAJO DEL PERFIL */
+.director-content {
+  width: 100%;
+  padding: var(--spacing-xl);
+  margin-top: 0; /* Importante: sin margen superior */
+}
+
+/* BARRA SUPERIOR CON TÍTULO Y BOTÓN */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xxl);
+  padding: var(--spacing-lg);
+  background: var(--color-white);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: var(--font-size-xxxl);
+  color: var(--color-primary);
+  font-weight: 700;
+  margin: 0;
+}
+
+.btn-logout {
+  background: var(--color-accent);
+  color: var(--color-white);
+  border: none;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--border-radius-sm);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.btn-logout:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(196, 16, 20, 0.3);
+}
+
+/* LAYOUT PRINCIPAL - DOS COLUMNAS */
+.director-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--spacing-xxl);
+  align-items: start;
+}
+
+/* ALERTAS */
+.alert {
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-sm);
+  margin-bottom: var(--spacing-lg);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: var(--font-size-base);
+}
+
+.alert-error {
+  background: rgba(220, 53, 69, 0.1);
+  border: 2px solid var(--color-danger);
+  color: var(--color-danger);
+}
+
+.loading-text {
+  text-align: center;
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+  padding: var(--spacing-xxl);
+}
+
+/* CONTENEDOR DE FORMULARIO */
+.form-container {
+  background: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-md);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  height: fit-content;
+}
+
+.form-container h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: var(--font-size-xl);
+  color: var(--color-secondary);
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid #e9ecef;
+}
+
+/* GRID DEL FORMULARIO - 2 COLUMNAS */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+/* GRUPOS DE FORMULARIO */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-md);
+}
+
+.form-group:nth-last-child(-n+3) {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-xs);
+  letter-spacing: 0.5px;
+}
+
+/* CAMPOS DE ENTRADA */
+.input-field {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 2px solid #e9ecef;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-base);
+  font-family: "Montserrat", sans-serif;
+  transition: all var(--transition-normal);
+  background: var(--color-white);
+  height: 48px;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 40, 97, 0.15);
+}
+
+.input-field.error {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+}
+
+.input-field.success {
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+}
+
+.input-field:disabled {
+  background-color: #f8f9fa;
+  color: var(--color-gray);
+  cursor: not-allowed;
+}
+
+/* CAMPOS SELECT */
+.select-field {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 2px solid #e9ecef;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-base);
+  font-family: "Montserrat", sans-serif;
+  transition: all var(--transition-normal);
+  background: var(--color-white);
+  cursor: pointer;
+  height: 48px;
+}
+
+.select-field:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 40, 97, 0.15);
+}
+
+.select-field.success {
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+}
+
+/* CONTADORES */
+.counter {
+  font-size: 13.75px;
+  margin-top: var(--spacing-xs);
+  font-family: "Montserrat", sans-serif;
+  transition: all var(--transition-fast);
+  height: 18px;
+}
+
+.counter.normal {
+  color: var(--color-gray);
+}
+
+.counter.active {
+  color: var(--color-primary);
+}
+
+.counter.success {
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+.counter.error {
+  color: var(--color-danger);
+  font-weight: 600;
+}
+
+/* MENSAJES DE ERROR Y ÉXITO */
+.error-message {
+  color: var(--color-danger);
+  font-size: 13.75px;
+  font-family: "Montserrat", sans-serif;
+  margin-top: var(--spacing-xs);
+  font-weight: 500;
+  height: 18px;
+}
+
+.success-message {
+  color: var(--color-success);
+  font-size: 13.75px;
+  font-family: "Montserrat", sans-serif;
+  margin-top: var(--spacing-xs);
+  font-weight: 500;
+}
+
+/* CONTENEDOR DE BOTONES */
+.buttons-container {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 2px solid #e9ecef;
+}
+
+/* BOTONES PRINCIPALES */
+.btn {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 45px;
+  flex: 1;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 40, 97, 0.25);
+}
+
+.btn-secondary {
+  background: var(--color-gray);
+  color: var(--color-white);
+}
+
+.btn-secondary:hover {
+  background: var(--color-gray-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.25);
+}
+
+/* CONTENEDOR DE TABLA */
+.table-section {
+  background: var(--color-white);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-xl);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  height: fit-content;
+}
+
+.table-section h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: var(--font-size-xl);
+  color: var(--color-secondary);
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid #e9ecef;
+}
+
+/* TABLA DE EMPLEADOS */
+.table-container {
+  background: var(--color-white);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  margin-top: var(--spacing-lg);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Lexend", sans-serif;
+  font-size: var(--font-size-base);
+}
+
+.table-header {
+  background: var(--color-primary);
+}
+
+.table-header th {
+  color: var(--color-white);
+  font-weight: 600;
+  padding: var(--spacing-md);
+  text-align: left;
+  font-family: "Montserrat", sans-serif;
+  font-size: var(--font-size-base);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.table-cell-center {
+  text-align: center !important;
+}
+
+.table-row {
+  border-bottom: 2px solid #e9ecef;
+  transition: background-color var(--transition-fast);
+}
+
+.table-row:hover {
+  background-color: #f8f9fa;
+}
+
+.table-cell {
+  padding: var(--spacing-md);
+  font-size: var(--font-size-base);
+  color: var(--color-secondary);
+  white-space: nowrap;
+}
+
+/* BADGES DE ESTADO */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 13.75px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-active {
+  background: rgba(40, 167, 69, 0.15);
+  color: var(--color-success);
+  border: 2px solid var(--color-success);
+}
+
+.status-inactive {
+  background: rgba(220, 53, 69, 0.15);
+  color: var(--color-danger);
+  border: 2px solid var(--color-danger);
+}
+
+/* BOTONES DE ACCIÓN */
+.btn-action {
+  padding: 6px 12px;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 13.75px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  margin: 0 4px;
+  height: 32px;
+}
+
+.btn-edit {
+  background: var(--color-warning);
+  color: var(--color-white);
+}
+
+.btn-edit:hover {
+  background: #e0a800;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(255, 193, 7, 0.4);
+}
+
+.btn-delete {
+  background: var(--color-danger);
+  color: var(--color-white);
+}
+
+.btn-delete:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(220, 53, 69, 0.4);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1200px) {
+  .director-layout {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .director-content {
+    padding: var(--spacing-md);
+  }
+  
+  .content-header {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+  
+  .page-title {
+    font-size: var(--font-size-xxl);
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .form-container {
+    padding: var(--spacing-lg);
+  }
+  
+  .buttons-container {
+    flex-direction: column;
+  }
+  
+  .table-section {
+    padding: var(--spacing-lg);
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  .data-table {
+    min-width: 800px;
+  }
+}

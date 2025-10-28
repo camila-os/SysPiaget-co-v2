@@ -1,0 +1,34 @@
+# Entorno virtual de Python
+venv/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Django
+*.log
+*.pot
+*.py[cod]
+*.pyc
+media/
+staticfiles/
+.env
+
+# Node / Frontend
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.env
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Otros
+*.swp

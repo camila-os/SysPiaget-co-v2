@@ -1,0 +1,14 @@
+/* ==============================
+   FUENTES GLOBALES
+============================== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
+:root {
+    --font-title: 'Montserrat', sans-serif;
+    --font-subtitle: 'Raleway', sans-serif;
+    --font-body: 'Lexend', sans-serif;
+    --font-serif: 'Merriweather', serif;
+}

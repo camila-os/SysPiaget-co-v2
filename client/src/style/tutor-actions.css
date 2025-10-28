@@ -1,0 +1,43 @@
+.tutor-actions {
+  display: flex;
+  gap: 4px; /* separación mínima */
+  align-items: center;
+}
+
+.tutor-actions .btn {
+  margin-top: 5px;
+  font-size: 0.78rem;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.2;
+  max-width: 80px;
+  max-height: 25px;
+}
+
+/* Botón "Ver" */
+.tutor-actions .btn-info {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.tutor-actions .btn-info:hover {
+  background-color: #0b5ed7;
+}
+
+/* Botón "Eliminar" */
+.tutor-actions .btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.tutor-actions .btn-danger:hover {
+  background-color: #bb2d3b;
+}
+
+/* Estado deshabilitado */
+.tutor-actions .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
