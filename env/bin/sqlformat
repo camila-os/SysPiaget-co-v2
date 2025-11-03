@@ -1,4 +1,6 @@
-#!/home/matias/Desktop/SysPiaget-co-v2-main/env/bin/python3
+#!/bin/sh
+'''exec' "/home/matias/Desktop/mi-version-sis (2)/env/bin/python3" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys

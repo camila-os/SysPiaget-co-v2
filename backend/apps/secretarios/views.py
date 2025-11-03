@@ -14,6 +14,38 @@ from .serializers import (
     ParentescoSerializer
 )
 
+# VERIFICACIÓN DNI EMPLEADO - AGREGAR ESTA VIEW
+@api_view(['GET'])
+def verificar_dni_empleado(request, dni):
+    """Verificar si DNI de empleado ya existe"""
+    try:
+        # Importar el modelo de empleados desde apps.login
+        from apps.login.models import Empleado
+        
+        empleado = Empleado.objects.filter(dni_empleado=dni).first()
+        if empleado:
+            return Response({
+                'dni': dni,
+                'existe': True,
+                'activo': empleado.estado_empleado == 'Activo',  # Ajusta según tu campo
+                'mensaje': f'Empleado {empleado.nombre_empleado} {empleado.apellido_empleado}',
+                'empleado_data': {
+                    'id_empleado': empleado.id_empleado,
+                    'nombre_empleado': empleado.nombre_empleado,
+                    'apellido_empleado': empleado.apellido_empleado,
+                    'estado_empleado': empleado.estado_empleado
+                }
+            })
+        else:
+            return Response({
+                'dni': dni,
+                'existe': False,
+                'activo': False,
+                'mensaje': 'DNI disponible - No es empleado'
+            })
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 #  FLUJO: AlumnoForm - Grados y Colegios
 @api_view(['GET'])
 def grados_list(request):
@@ -111,6 +143,67 @@ def crear_parentesco(request):
             {'error': str(e)}, 
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
+
+@api_view(['GET'])
+def alumnos_list(request):
+    """Obtener lista de alumnos CON información de grado"""
+    try:
+        # ✅ INCLUIR LAS RELACIONES EN LA CONSULTA
+        alumnos = Alumno.objects.all().prefetch_related(
+            'alumnoxgrado_set__id_grado'
+        )
+        serializer = AlumnoSerializer(alumnos, many=True)
+        return Response(serializer.data)
+    except Exception as e:
+        return Response(
+            {'error': str(e)}, 
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+    
+@api_view(['GET'])
+def alumnos_por_grado(request, id_grado):
+    """Obtener todos los alumnos de un grado específico"""
+    try:
+        # Filtrar alumnos que tienen relación activa con el grado especificado
+        alumnos = Alumno.objects.filter(
+            alumnoxgrado__id_grado=id_grado,
+            alumnoxgrado__activo=True,
+            estado_alumno='Activo'
+        ).prefetch_related(
+            'alumnoxgrado_set__id_grado'
+        ).distinct()
+        
+        serializer = AlumnoSerializer(alumnos, many=True)
+        
+        return Response({
+            'grado_id': id_grado,
+            'count': alumnos.count(),
+            'alumnos': serializer.data
+        })
+        
+    except Exception as e:
+        return Response(
+            {'error': f'Error al obtener alumnos por grado: {str(e)}'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+# OPCIÓN ALTERNATIVA: GET para obtener todos los alumnos completos
+@api_view(['GET'])
+def get_all_alumnos_completos(request):
+    """Obtener todos los alumnos completos (usando el serializer mejorado)"""
+    try:
+        alumnos = Alumno.objects.all().prefetch_related(
+            'alumnoxgrado_set__id_grado',
+            'alumnos_tutores__id_tutor',
+            'alumnos_tutores__id_parentesco'
+        )
+        serializer = AlumnoSerializer(alumnos, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response({
+            'error': f'Error interno del servidor: {str(e)}'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            
+
 
 #  FLUJO: createAlumnoCompleto - Registro Completo
 @api_view(['POST']) 

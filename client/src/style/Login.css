@@ -1,43 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
 
-:root {
-  /* Sistema de diseño - Colores */
-  --color-primary: #252861;
-  --color-secondary: #1a1c49;
-  --color-accent: #C41014;
-  --color-accent-hover: #E30613;
-  --color-gray: #495057;
-  --color-gray-hover: #6c757d;
-  --color-white: #ffffff;
-  --color-text-light: rgba(255, 255, 255, 0.9);
-  
-  /* Sistema de diseño - Espaciados (AUMENTADOS ~13%) */
-  --spacing-xs: 9.3px;
-  --spacing-sm: 13.4px;
-  --spacing-md: 18.5px;
-  --spacing-lg: 26.8px;
-  --spacing-xl: 36px;
-  --spacing-xxl: 45.3px;
-  --spacing-xxxl: 56.7px;
-  
-  /* Sistema de diseño - Tipografía (AUMENTADA ~13%) */
-  --font-size-sm: 15.5px;
-  --font-size-base: 18.5px;
-  --font-size-lg: 20.6px;
-  --font-size-xl: 24.7px;
-  --font-size-xxl: 31.9px;
-  --font-size-xxxl: 39.1px;
-  
-  /* Sistema de diseño - Border radius */
-  --border-radius-sm: 9.3px;
-  --border-radius-md: 13.4px;
-  
-  /* Transiciones */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-}
-
 body {
     background-image: url(./logos_e_imagenes/5184157.jpg);
     background-size: cover;
@@ -56,8 +19,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 68px); /* +13% */
-  padding: var(--spacing-lg);
+  min-height: calc(100vh - 68px);
+  padding: 26.8px;
   position: relative;
   width: 100%;
 }
@@ -65,25 +28,25 @@ body {
 /* Card principal - OPTIMIZADO PARA 113% */
 .login-card-row {
   display: flex;
-  width: min(92%, 1473px); /* +~13% */
+  width: min(92%, 1473px);
   max-width: 1473px;
-  border-radius: var(--border-radius-md);
+  border-radius: 13.4px;
   overflow: hidden;
   box-shadow: 
-    0 22.7px 45.3px rgba(0, 0, 0, 0.29), /* +13% intensidad */
+    0 22.7px 45.3px rgba(0, 0, 0, 0.29),
     0 11.3px 22.7px rgba(0, 0, 0, 0.18);
-  min-height: 737px; /* +13% desde 650px */
-  max-height: 86.4vh; /* +13% desde 78vh */
-  border: 1.13px solid rgba(255, 255, 255, 0.13); /* +13% */
-  backdrop-filter: blur(13.4px); /* +13% */
+  min-height: 737px;
+  max-height: 86.4vh;
+  border: 1.13px solid rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(13.4px);
 }
 
 /* Columna izquierda - OPTIMIZADA 113% */
 .login-left {
-  background: var(--color-primary);
-  color: var(--color-white);
+  background: #252861;
+  color: #ffffff;
   flex: 1.5;
-  padding: var(--spacing-xxxl) var(--spacing-xxl);
+  padding: 56.7px 45.3px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -103,9 +66,9 @@ body {
   bottom: 0;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.134) 0%, /* +13% opacidad */
+    rgba(255, 255, 255, 0.134) 0%,
     transparent 50%,
-    rgba(0, 0, 0, 0.134) 100% /* +13% opacidad */
+    rgba(0, 0, 0, 0.134) 100%
   );
   pointer-events: none;
 }
@@ -114,17 +77,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-xxxl);
+  gap: 26.8px;
+  margin-bottom: 56.7px;
   position: relative;
   z-index: 1;
 }
 
 .login-left .logo {
-  width: 158.6px; /* +13% desde 140px */
+  width: 158.6px;
   height: auto;
-  border-radius: var(--border-radius-sm);
-  transition: transform var(--transition-normal);
+  border-radius: 9.3px;
+  transition: transform 0.3s ease;
 }
 
 .login-left .logo:hover {
@@ -133,25 +96,25 @@ body {
 
 .login-left h2 {
   margin: 0;
-  font-size: var(--font-size-xxxl);
+  font-size: 39.1px;
   font-weight: 600;
-  color: var(--color-white);
+  color: #ffffff;
   line-height: 1.2;
 }
 
 .institute-number {
-  font-size: var(--font-size-lg);
-  margin: var(--spacing-sm) 0 0;
+  font-size: 20.6px;
+  margin: 13.4px 0 0;
   opacity: 0.9;
   font-weight: 400;
 }
 
 .institute-info {
-  margin-top: var(--spacing-xxl);
-  font-size: var(--font-size-base);
+  margin-top: 45.3px;
+  font-size: 18.5px;
   line-height: 1.7;
   opacity: 0.9;
-  max-width: 509.9px; /* +13% */
+  max-width: 509.9px;
   position: relative;
   z-index: 1;
 }
@@ -159,73 +122,73 @@ body {
 /* Lado derecho - TRANSLÚCIDO OPTIMIZADO */
 .login-right {
   flex: 1;
-  background: rgba(255, 255, 255, 0.091); /* +13% opacidad */
-  backdrop-filter: blur(13.4px); /* +13% */
-  padding: var(--spacing-xxl) var(--spacing-xxxl);
+  background: rgba(255, 255, 255, 0.091);
+  backdrop-filter: blur(13.4px);
+  padding: 45.3px 56.7px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-left: 3.4px solid #c41014; /* +13% grosor */
-  border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+  border-left: 3.4px solid #c41014;
+  border-radius: 0 13.4px 13.4px 0;
 }
 
 /* Header - OPTIMIZADO 113% */
 .login-header {
   font-family: "Montserrat", sans-serif;
-  font-size: 38.1px; /* +13% desde 34px */
+  font-size: 38.1px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 101.9px; /* +13% desde 90px */
+  margin-bottom: 101.9px;
   color: #000000;
-  letter-spacing: 0.57px; /* +13% */
+  letter-spacing: 0.57px;
 }
 
 /* Mensaje de error/info - OPTIMIZADO 113% */
 .message {
   text-align: center;
-  margin-bottom: 24.7px; /* +13% */
-  padding: 18.1px; /* +13% */
-  border-radius: 6.8px; /* +13% */
-  background: rgba(255, 0, 0, 0.068); /* +13% */
+  margin-bottom: 24.7px;
+  padding: 18.1px;
+  border-radius: 6.8px;
+  background: rgba(255, 0, 0, 0.068);
   color: #c41014;
-  font-size: 17px; /* +13% */
+  font-size: 17px;
   font-family: "Montserrat", sans-serif;
-  border: 1.13px solid rgba(255, 0, 0, 0.23); /* +13% */
+  border: 1.13px solid rgba(255, 0, 0, 0.23);
 }
 
 /* Formulario - ESPACIADO OPTIMIZADO 113% */
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 27.2px; /* +13% */
+  gap: 27.2px;
 }
 
 /* Labels - OPTIMIZADO 113% */
 .login-form label {
-  font-size: 17px; /* +13% */
+  font-size: 17px;
   font-weight: 600;
   color: #c41014;
   text-transform: uppercase;
-  margin-bottom: 6.8px; /* +13% */
+  margin-bottom: 6.8px;
   font-family: "Montserrat", sans-serif;
-  letter-spacing: 0.34px; /* +13% */
+  letter-spacing: 0.34px;
 }
 
 /* Inputs - OPTIMIZADO 113% */
 .login-form input {
   width: 100%;
-  padding: 15.9px; /* +13% */
+  padding: 15.9px;
   border: none;
-  border-bottom: 2.27px solid #ccc; /* +13% */
+  border-bottom: 2.27px solid #ccc;
   outline: none;
-  font-size: 17px; /* +13% */
+  font-size: 17px;
   transition: border-color 0.3s;
   background: transparent;
   font-family: "Montserrat", sans-serif;
 }
 
 .login-form input:focus {
-  border-bottom: 3.4px solid #252861; /* +13% */
+  border-bottom: 3.4px solid #252861;
 }
 
 .login-form input::placeholder {
@@ -239,23 +202,23 @@ body {
 }
 
 .password-wrapper input {
-  padding-right: 51px; /* +13% */
+  padding-right: 51px;
 }
 
 .toggle-password {
   position: absolute;
-  right: 13.6px; /* +13% */
+  right: 13.6px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6.8px; /* +13% */
+  padding: 6.8px;
 }
 
 .eye-icon {
-  width: 24.9px; /* +13% */
-  height: 24.9px; /* +13% */
+  width: 24.9px;
+  height: 24.9px;
   opacity: 0.6;
   transition: opacity 0.2s, transform 0.2s;
 }
@@ -268,23 +231,23 @@ body {
 /* Botón Ingresar - OPTIMIZADO 113% */
 .btn-red {
   width: 100%;
-  padding: 18.1px; /* +13% */
+  padding: 18.1px;
   background: #c41014;
   color: #fff;
-  font-size: 19.3px; /* +13% */
+  font-size: 19.3px;
   font-weight: bold;
   border: none;
-  border-radius: 6.8px; /* +13% */
+  border-radius: 6.8px;
   cursor: pointer;
   font-family: "Montserrat", sans-serif;
   transition: all 0.3s ease;
-  letter-spacing: 0.34px; /* +13% */
+  letter-spacing: 0.34px;
 }
 
 .btn-red:hover {
   background: #a30e11;
-  transform: translateY(-2.27px); /* +13% */
-  box-shadow: 0 4.5px 13.6px rgba(0, 0, 0, 0.17); /* +13% */
+  transform: translateY(-2.27px);
+  box-shadow: 0 4.5px 13.6px rgba(0, 0, 0, 0.17);
 }
 
 .btn-red:active {
@@ -308,7 +271,7 @@ body {
 @media (max-width: 1200px) {
   .login-card-row {
     width: min(96%, 1247px);
-    min-height: 702px; /* +13% responsive */
+    min-height: 702px;
   }
   
   .login-header {
@@ -328,7 +291,7 @@ body {
   
   .login-left,
   .login-right {
-    padding: var(--spacing-xl);
+    padding: 36px;
   }
   
   .login-header {
@@ -340,7 +303,7 @@ body {
 @media (max-width: 768px) {
   .login-page {
     min-height: calc(100vh - 68px);
-    padding: var(--spacing-md);
+    padding: 18.5px;
   }
   
   .login-card-row {
@@ -352,13 +315,13 @@ body {
   
   .login-left,
   .login-right {
-    padding: var(--spacing-lg);
+    padding: 26.8px;
   }
   
   .login-right {
     border-left: none;
     border-top: 3.4px solid #c41014;
-    border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+    border-radius: 0 0 13.4px 13.4px;
   }
   
   .login-header {
@@ -371,14 +334,14 @@ body {
   }
   
   .login-left h2 {
-    font-size: var(--font-size-xxl);
+    font-size: 31.9px;
   }
 }
 
 @media (max-width: 576px) {
   .login-page {
     min-height: calc(100vh - 56.7px);
-    padding: var(--spacing-sm);
+    padding: 13.4px;
   }
   
   .login-card-row {
@@ -390,7 +353,7 @@ body {
   }
   
   .login-left h2 {
-    font-size: var(--font-size-xl);
+    font-size: 24.7px;
   }
   
   .login-header {
@@ -412,15 +375,15 @@ body {
 /* Para pantallas muy altas - ajuste fino 113% */
 @media (min-height: 900px) {
   .login-card-row {
-    min-height: 770px; /* +13% */
-    max-height: 83.4vh; /* +13% */
+    min-height: 770px;
+    max-height: 83.4vh;
   }
 }
 
 /* Para pantallas ultra anchas */
 @media (min-width: 1800px) {
   .login-card-row {
-    width: min(87%, 1699px); /* +13% */
+    width: min(87%, 1699px);
   }
 }
 
@@ -428,7 +391,7 @@ body {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(22.7px); /* +13% */
+    transform: translateY(22.7px);
   }
   to {
     opacity: 1;

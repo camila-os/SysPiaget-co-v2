@@ -9,65 +9,87 @@
   font-family: "Lexend", serif;
 }
 
-/* El componente Perfil ES el header, así que no necesita estilos adicionales aquí */
-
 .page-main {
-  padding: var(--spacing-lg);
+  padding: 54px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: calc(100vh - 80px); /* Ajusta según la altura de tu header */
+  min-height: calc(100vh - 72px);
 }
 
-/* CONTENEDOR DEL FORMULARIO */
+/* CONTENEDOR DEL FORMULARIO - 10% MÁS PEQUEÑO */
 .alumno-form-container {
-  background: rgba(255, 255, 255, 0.091);
-  backdrop-filter: blur(13.4px);
-  border-radius: var(--border-radius-md);
-  padding: var(--spacing-xxl);
+  background: #3c3c3c18;
+  backdrop-filter: blur(10.89px);
+  border-radius: 9px;
+  padding: 27px;
   width: 100%;
-  max-width: 1200px;
-  border: 1.13px solid rgba(255, 255, 255, 0.13);
+  max-width: 1170px;
+  border: 0.92px solid rgba(255, 255, 255, 0.13);
   box-shadow: 
-    0 22.7px 45.3px rgba(0, 0, 0, 0.29),
-    0 11.3px 22.7px rgba(0, 0, 0, 0.18);
+    0 18.36px 36.72px rgba(0, 0, 0, 0.29),
+    0 9.18px 18.36px rgba(0, 0, 0, 0.18);
+  animation: slideIn 0.5s ease-out;
 }
 
 /* HEADER DEL FORMULARIO */
 .form-header {
-  position: relative; /* necesario para que los hijos absolutos se posicionen respecto a este contenedor */
+  position: relative;
   display: flex;
-  justify-content: flex-start; /* ahora solo alinea los demás elementos */
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-xxl);
-  padding-bottom: var(--spacing-lg);
-  border-bottom: 2.27px solid var(--color-primary);
+  margin-bottom: 18px;
+  padding-bottom: 21.69px;
+  border-bottom: 1.84px solid #252861;
+  width: 100%;
 }
-
-.btn-square {
-  width: 45px;
-  height: 45px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-}
-
-.form-header .btn-square {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
 
 .form-header h2 {
   font-family: "Montserrat", sans-serif;
-  font-size: var(--font-size-xxl);
+  font-size: 25.83px;
   font-weight: 700;
-  color: var(--color-primary);
+  color: #252861;
   margin: 0;
-  letter-spacing: 0.34px;
+  letter-spacing: 0.28px;
+  flex: 1;
+}
+
+/* BOTÓN DE CERRAR CUADRADO - ESTILOS CORREGIDOS */
+.close-button {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 45px !important;
+  height: 45px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 2px solid #C41014 !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  color: #C41014 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+}
+
+.close-button:hover {
+  background: #C41014 !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 3.24px 9.72px rgba(196, 16, 20, 0.3);
+}
+
+.close-button:active {
+  transform: translateY(0);
+}
+
+/* Icono dentro del botón cuadrado */
+.close-button .icon {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0;
+  display: block !important;
 }
 
 /* FORMULARIO */
@@ -77,50 +99,58 @@
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-xxl);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 21.69px;
+  margin-bottom: 36.72px;
 }
 
 /* GRUPOS DE FORMULARIO */
 .form-group {
   display: flex;
   flex-direction: column;
+  margin-left: 22.5px;
 }
 
 .form-group.full-width {
   grid-column: 1 / -1;
 }
 
+.form-group.half-width {
+  grid-column: span 2;
+}
+
 .form-group label {
   font-family: "Montserrat", sans-serif;
-  font-size: var(--font-size-sm);
+  font-size: 12.6px;
   font-weight: 600;
-  color: var(--color-accent);
+  color: #C41014;
   text-transform: uppercase;
-  margin-bottom: var(--spacing-xs);
-  letter-spacing: 0.34px;
+  padding-top: 18px;
+  margin-bottom: 7.56px;
+  padding-left: 0.9px;  
+  letter-spacing: 0.28px;
 }
 
 /* INPUTS Y SELECTS */
 .form-group input,
 .form-group select,
 .form-group textarea {
-  padding: 15.9px;
+  padding: 2.7px 9px;
   border: none;
-  border-bottom: 2.27px solid #ccc;
+  border-bottom: 1.84px solid #0000003c;
   outline: none;
-  font-size: var(--font-size-base);
+  font-size: 15.03px;
   font-family: "Montserrat", sans-serif;
   background: transparent;
-  transition: border-color var(--transition-fast);
-  border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+  transition: border-color 0.2s ease;
+  border-radius: 7.56px 7.56px 0 0;
+  height: 58.5px;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-bottom: 3.4px solid var(--color-primary);
+  border-bottom: 2.75px solid #252861;
   background: rgba(37, 40, 97, 0.05);
 }
 
@@ -136,156 +166,236 @@
   appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23252861' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
-  background-position: right 15.9px center;
-  background-size: 18.5px;
-  padding-right: 45.3px;
+  background-position: right 12.87px center;
+  background-size: 15.03px;
+  padding-right: 36.72px;
 }
 
 .form-group textarea {
   resize: vertical;
-  min-height: 90px;
+  min-height: 72.9px;
   font-family: "Lexend", serif;
   line-height: 1.5;
-  border: 1.13px solid #ccc;
-  border-radius: var(--border-radius-sm);
-  padding: 13.6px;
+  border: 0.92px solid #ccc;
+  border-radius: 7.56px;
+  padding: 10.98px;
 }
 
 .form-group textarea:focus {
-  border-color: var(--color-primary);
-  border-width: 2.27px;
+  border-color: #252861;
+  border-width: 1.84px;
 }
 
 /* MENSAJES DE ERROR */
 .error {
-  color: var(--color-accent);
-  font-size: var(--font-size-sm);
+  color: #C41014;
+  font-size: 12.6px;
   font-family: "Montserrat", sans-serif;
-  margin-top: var(--spacing-xs);
+  margin-top: 7.56px;
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 6.8px;
+  gap: 5.49px;
 }
 
 .error::before {
   content: "⚠";
-  font-size: 14px;
+  font-size: 11.34px;
 }
 
 /* ACCIONES DEL FORMULARIO */
 .form-actions {
   display: flex;
   justify-content: flex-end;
-  padding-top: var(--spacing-lg);
-  border-top: 1.13px solid rgba(37, 40, 97, 0.2);
+  padding-top: 21.69px;
+  border-top: 0.92px solid rgba(37, 40, 97, 0.2);
 }
 
-
-
-/* RESPONSIVE */
-/* --- PANTALLAS GRANDES A MEDIAS (hasta 992px) --- */
-@media (max-width: 992px) {
-  .btn-square {
-    width: 40px;
-    height: 40px;
-  }
+/* Estilos para el botón de agregar colegio */
+.label-with-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6.48px;
 }
 
-/* --- TABLETS Y PANTALLAS MEDIANAS (hasta 768px) --- */
-@media (max-width: 768px) {
-  .page-main {
-    padding: var(--spacing-md);
+.btn-agregar-colegio {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25.92px;
+  height: 25.92px;
+  font-size: 16.2px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 1.62px 3.24px rgba(0, 0, 0, 0.1);
+}
+
+.btn-agregar-colegio:hover:not(:disabled) {
+  background-color: #218838;
+  transform: scale(1.1);
+  box-shadow: 0 3.24px 6.48px rgba(0, 0, 0, 0.2);
+}
+
+.btn-agregar-colegio:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-agregar-colegio:focus {
+  outline: none;
+  box-shadow: 0 0 0 2.43px rgba(40, 167, 69, 0.3);
+}
+
+/* BOTONES PRINCIPALES */
+.next-button {
+  background-color: #252861;
+  color: white;
+  border: none;
+  padding: 12.87px 25.83px;
+  border-radius: 6.48px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15.03px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.next-button:hover {
+  background-color: #1a1c49;
+  transform: translateY(-1.62px);
+  box-shadow: 0 3.24px 9.72px rgba(37, 40, 97, 0.3);
+}
+
+/* --- PANTALLAS GRANDES A MEDIAS (hasta 1200px) --- */
+@media (max-width: 1200px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .alumno-form-container {
-    padding: var(--spacing-lg);
+    max-width: 990px;
+    padding: 24.3px;
+  }
+}
+
+/* --- TABLETS Y PANTALLAS MEDIANAS (hasta 992px) --- */
+@media (max-width: 992px) {
+  .alumno-form-container {
+    max-width: 855px;
+  }
+}
+
+/* --- TABLETS PEQUEÑAS (hasta 768px) --- */
+@media (max-width: 768px) {
+  .page-main {
+    padding: 15.03px;
+  }
+  
+  .alumno-form-container {
+    padding: 21.69px;
+    max-width: 100%;
   }
   
   .form-grid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-md);
+    gap: 15.03px;
   }
   
   .form-header {
-    position: relative;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15.03px;
+    text-align: left;
   }
   
   .form-header h2 {
-    font-size: var(--font-size-xl);
-    margin-right: 50px; /* deja espacio visual para el botón */
+    font-size: 19.98px;
+    margin-right: 0;
+    flex: 1;
+  }
+  
+  /* Botón cerrar en tablets */
+  .close-button {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  .close-button .icon {
+    width: 18px !important;
+    height: 18px !important;
   }
   
   .form-actions {
     justify-content: center;
-  }
-
-  /* --- BOTÓN CUADRADO EN TABLETS --- */
-  .form-header .btn-square {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-  }
-
-  .btn-square {
-    width: 38px;
-    height: 38px;
-    border-radius: 6px;
   }
 }
 
 /* --- MÓVILES (hasta 576px) --- */
 @media (max-width: 576px) {
   .page-main {
-    padding: var(--spacing-sm);
+    padding: 10.89px;
   }
   
   .alumno-form-container {
-    padding: var(--spacing-md);
+    padding: 15.03px;
   }
   
   .form-group input,
   .form-group select,
   .form-group textarea {
-    padding: 13.6px;
-    font-size: var(--font-size-sm);
+    padding: 10.98px;
+    font-size: 12.6px;
+    height: 36px;
   }
 
   .form-header {
-    position: relative;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
+    text-align: left;
   }
 
   .form-header h2 {
-    font-size: var(--font-size-lg);
-    margin-right: 45px; /* deja espacio visual para el botón */
+    font-size: 16.65px;
+    margin-right: 0;
+    flex: 1;
   }
-
-  /* --- BOTÓN CUADRADO EN MÓVILES --- */
-  .form-header .btn-square {
-    position: absolute;
-    top: 0;
-    right: 0;
+  
+  /* Botón cerrar en móviles */
+  .close-button {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 6px !important;
   }
-
-  .btn-square {
-    width: 35px;
-    height: 35px;
-    border-radius: 5px;
+  
+  .close-button .icon {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  
+  .form-group textarea {
+    min-height: 64.8px;
+  }
+  
+  .next-button {
+    padding: 10.98px 21.96px;
+    font-size: 13.5px;
   }
 }
-
 
 /* ANIMACIONES */
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(22.7px);
+    transform: translateY(18.36px);
   }
   to {
     opacity: 1;
@@ -293,8 +403,9 @@
   }
 }
 
-.alumno-form-container {
-  animation: slideIn 0.5s ease-out;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* Estilos para estados de loading */
@@ -306,24 +417,19 @@
 .next-button.loading::after {
   content: "";
   position: absolute;
-  width: 18.5px;
-  height: 18.5px;
-  border: 2.27px solid transparent;
-  border-top: 2.27px solid var(--color-white);
+  width: 15.03px;
+  height: 15.03px;
+  border: 1.84px solid transparent;
+  border-top: 1.84px solid #ffffff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
 /* Estilo para select con opciones */
 .form-group select option {
-  background: var(--color-white);
-  color: var(--color-primary);
-  padding: 13.6px;
+  background: #ffffff;
+  color: #252861;
+  padding: 10.98px;
   font-family: "Lexend", serif;
 }
 
@@ -331,44 +437,42 @@
 .form-group input[type="number"] {
   font-family: "Montserrat", sans-serif;
 }
-/* Estilos para el botón de agregar colegio */
-.label-with-button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
+
+/* Información de edad calculada */
+.edad-info {
+  font-size: 12.6px;
+  color: #666;
+  margin-top: 5.4px;
+  font-style: italic;
 }
 
-.btn-agregar-colegio {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Información del colegio seleccionado */
+.colegio-seleccionado-info {
+  font-size: 12.6px;
+  color: #28a745;
+  margin-top: 7.2px;
+  padding: 5.4px;
+  background: rgba(40, 167, 69, 0.1);
+  border-radius: 4.5px;
 }
 
-.btn-agregar-colegio:hover:not(:disabled) {
-  background-color: #218838;
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* Mensaje de carga */
+.loading-colegios {
+  font-size: 13.5px;
+  color: #666;
+  text-align: center;
+  padding: 13.5px;
+  font-style: italic;
 }
 
-.btn-agregar-colegio:disabled {
-  background-color: #6c757d;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.btn-agregar-colegio:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3);
+/* Mensaje de error */
+.error-message {
+  background: rgba(196, 16, 20, 0.1);
+  border: 0.9px solid #C41014;
+  border-radius: 6.3px;
+  padding: 10.8px;
+  margin-bottom: 18px;
+  color: #C41014;
+  font-size: 13.5px;
+  font-family: "Montserrat", sans-serif;
 }

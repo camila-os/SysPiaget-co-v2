@@ -5,6 +5,14 @@ import "../../style/RegistrarTutor.css";
 import Perfil from "../../components/Perfil";
 import Button from "../../components/Buttons/Buttons";
 import FormTutorNuevoSimple from './FormTutorNuevoSimple'; // ✅ Usa el SIMPLE
+import { 
+  tutorValidationRulesCompletas,
+  nameInputProps, 
+  dniInputProps, 
+  phoneInputProps, 
+  emailInputProps 
+} from "../validations/tutorValidations.jsx";
+import { dniValidationRulesCompletoTutor } from "../validations/dniTutorValidations.jsx";
 
 function RegistrarTutorIndependiente() {
   const navigate = useNavigate();
@@ -54,7 +62,7 @@ function RegistrarTutorIndependiente() {
           <div className="form-header">
             <h2>Registro de Tutor</h2>
             <Button
-              variant="cancel"
+              variant="canc el"
               type="outline"
               size="square"
               onClick={handleCancelar}

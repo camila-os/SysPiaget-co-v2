@@ -1,13 +1,26 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import "./BuscadorParentescos.css";
 
 const BuscadorParentescos = ({ 
   parentescos = [], 
   onParentescoSelect, 
-  disabled = false 
+  disabled = false,
+  valorSeleccionado = null // ✅ NUEVA PROP para recibir el ID seleccionado
 }) => {
   const [busqueda, setBusqueda] = useState('');
   const [mostrarOpciones, setMostrarOpciones] = useState(false);
+
+  // ✅ NUEVO: Cargar el parentesco seleccionado cuando cambie la prop
+  useEffect(() => {
+    if (valorSeleccionado) {
+      const parentescoSeleccionado = parentescos.find(p => p.id_parentesco === valorSeleccionado);
+      if (parentescoSeleccionado) {
+        setBusqueda(parentescoSeleccionado.parentesco_nombre);
+      }
+    } else {
+      setBusqueda(''); // Limpiar si no hay selección
+    }
+  }, [valorSeleccionado, parentescos]);
 
   const parentescosFiltrados = useMemo(() => {
     if (!busqueda.trim()) return parentescos;
@@ -26,6 +39,11 @@ const BuscadorParentescos = ({
   const handleInputChange = (e) => {
     setBusqueda(e.target.value);
     setMostrarOpciones(true);
+    
+    // ✅ Limpiar selección si el usuario borra la búsqueda
+    if (e.target.value === '') {
+      onParentescoSelect(null);
+    }
   };
 
   const handleInputFocus = () => {

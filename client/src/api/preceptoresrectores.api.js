@@ -2,17 +2,10 @@ import api from './auth.api';
 
 // LUGARES
 export const getAllLugares = () => api.get('/preceptores_rectores/lugares/');
-
+export const createLugar = (data) => api.post('/preceptores_rectores/lugares/', data);
 // TIPOS DE INCIDENCIAS
-export const getAllTiposIncidencias = async () => {
-  try {
-    const response = await api.get('/preceptores_rectores/tipos-incidencias/');
-    return response;
-  } catch (error) {
-    console.error('❌ Error obteniendo tipos de incidencias:', error);
-    throw error;
-  }
-};
+export const getAllTiposIncidencias = () => api.get('/preceptores_rectores/tipos-incidencias/');
+export const createTipoIncidencia = (data) => api.post('/preceptores_rectores/tipos-incidencias/', data);
 
 // INCIDENCIAS
 export const getAllIncidencias = () => api.get('/preceptores_rectores/incidencias/');
@@ -152,6 +145,6 @@ export const getIncidenciasPorTipo = async (idTipoIncidencia) => {
     console.error('❌ Error obteniendo incidencias por tipo:', error);
     throw error;
   }
-};
 
+};
 export default api;

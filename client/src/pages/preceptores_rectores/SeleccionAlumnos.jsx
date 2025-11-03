@@ -5,7 +5,6 @@ import Perfil from "../../components/Perfil";
 import { getAlumnosLista } from '../../api/secretario.api';
 import { getGrados } from '../../api/preceptoresrectores.api';
 import { useIncidencia } from '../../contexts/IncidenciaContext';
-import "../../style/RegistroIncidencia.css";
 
 function SeleccionAlumnos() {
   const navigate = useNavigate();
@@ -213,38 +212,38 @@ function SeleccionAlumnos() {
   }
 
   return (
-    <div className="page-container">
-      <header className="page-header">
+    <div className="preceptores-rectores-container">
+      <header className="preceptores-rectores-header">
         <Perfil />
       </header>
 
-      <main className="page-main">
-        <div className='alumno-form-container'>
-          <div className="form-header">
+      <main className="preceptores-rectores-main">
+        <div className='preceptores-rectores-form-container'>
+          <div className="preceptores-rectores-form-header">
             <h2>Paso 1: Selección de Alumnos</h2>
             <button 
               type="button"
               onClick={handleCancel} 
-              className='form-btn btn-secondary'
+              className='preceptores-rectores-form-btn preceptores-rectores-btn-secondary'
             >
               Cancelar Proceso
             </button>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="alumno-form-grid">
+          <form onSubmit={handleSubmit(onSubmit)} className="preceptores-rectores-form-grid">
             {/* Sección de Búsqueda y Filtros // Columna izquierda*/}
-            <div className="left-column">
-              <div className="form-section">
+            <div className="preceptores-rectores-left-column">
+              <div className="preceptores-rectores-form-section">
                 <h3>Buscar y Filtrar Alumnos</h3>
                 
-                <div className="form-grid">
-                  <div className="form-group full-width">
-                    <label className="form-label">Buscar Alumno</label>
-                    <div className="search-container">
-                      <div className="search-input-wrapper">
+                <div className="preceptores-rectores-form-grid">
+                  <div className="preceptores-rectores-form-group preceptores-rectores-full-width">
+                    <label className="preceptores-rectores-form-label">Buscar Alumno</label>
+                    <div className="preceptores-rectores-search-container">
+                      <div className="preceptores-rectores-search-input-wrapper">
                         <input
                           type="text"
-                          className="form-input"
+                          className="preceptores-rectores-form-input"
                           placeholder="Buscar por DNI, nombre y apellido..."
                           value={filtro}
                           onChange={handleFiltroChange}
@@ -254,7 +253,7 @@ function SeleccionAlumnos() {
                         <button 
                           type="button"
                           onClick={limpiarFiltro}
-                          className="form-btn btn-secondary"
+                          className="preceptores-rectores-form-btn preceptores-rectores-btn-secondary"
                         >
                           Limpiar
                         </button>
@@ -262,10 +261,10 @@ function SeleccionAlumnos() {
                     </div>
                   </div>
 
-                  <div className="form-group">
-                    <label className="form-label">Filtrar por Año</label>
+                  <div className="preceptores-rectores-form-group">
+                    <label className="preceptores-rectores-form-label">Filtrar por Año</label>
                     <select 
-                      className="form-select" 
+                      className="preceptores-rectores-form-select" 
                       {...register('grado')}
                       onChange={(e) => {
                         // Actualizar el valor del select
@@ -285,7 +284,7 @@ function SeleccionAlumnos() {
                   </div>
                 </div>
 
-                <div className="counter-results">
+                <div className="preceptores-rectores-counter-results">
                   {mostrarResultados ? (
                     <>
                       Mostrando {alumnosFiltrados.length} de {alumnos.length} alumnos
@@ -300,16 +299,16 @@ function SeleccionAlumnos() {
 
               {/* Resultados de Búsqueda - Solo se muestra cuando hay filtros activos */}
               {mostrarResultados && (
-                <div className="form-section">
+                <div className="preceptores-rectores-form-section">
                   <h3>Resultados de Búsqueda</h3>
                   
                   {alumnosFiltrados.length === 0 ? (
-                    <div className="no-results-message">
+                    <div className="preceptores-rectores-no-results-message">
                       No se encontraron alumnos con los filtros aplicados
                     </div>
                   ) : (
-                    <div className="table-responsive-wrapper">
-                      <table className="results-table">
+                    <div className="preceptores-rectores-table-responsive-wrapper">
+                      <table className="preceptores-rectores-results-table">
                         <thead>
                           <tr>
                             <th>DNI</th>
@@ -322,7 +321,7 @@ function SeleccionAlumnos() {
                           {alumnosFiltrados.map(alumno => (
                             <tr 
                               key={alumno.id_alumno}
-                              className={alumnosSeleccionados.find(a => a.id_alumno === alumno.id_alumno) ? 'selected-row' : ''}
+                              className={alumnosSeleccionados.find(a => a.id_alumno === alumno.id_alumno) ? 'preceptores-rectores-selected-row' : ''}
                             >
                               <td>{alumno.dni_alumno}</td>
                               <td>
@@ -332,10 +331,10 @@ function SeleccionAlumnos() {
                               <td>
                                 <button
                                   type="button"
-                                  className={`table-btn ${
+                                  className={`preceptores-rectores-table-btn ${
                                     alumnosSeleccionados.find(a => a.id_alumno === alumno.id_alumno) 
-                                      ? 'btn-added' 
-                                      : 'btn-add'
+                                      ? 'preceptores-rectores-btn-added' 
+                                      : 'preceptores-rectores-btn-add'
                                   }`}
                                   onClick={() => agregarAlumno(alumno)}
                                   disabled={
@@ -363,11 +362,11 @@ function SeleccionAlumnos() {
 
               {/* Mensaje cuando no hay filtros activos */}
               {!mostrarResultados && (
-                <div className="form-section">
-                  <div className="no-search-message">
+                <div className="preceptores-rectores-form-section">
+                  <div className="preceptores-rectores-no-search-message">
                     <h3>Resultados de Búsqueda</h3>
                     <p>Ingrese un término de búsqueda o seleccione un grado específico para ver los resultados.</p>
-                    <div className="search-tips">
+                    <div className="preceptores-rectores-search-tips">
                       <strong>Puede buscar por:</strong>
                       <ul>
                         <li>DNI</li>
@@ -379,25 +378,25 @@ function SeleccionAlumnos() {
               )}
             </div>
             {/* Columna Derecha */}
-            <div className="right-column">
+            <div className="preceptores-rectores-right-column">
               {/* Alumnos Seleccionados */}
-              <div className="form-section">
+              <div className="preceptores-rectores-form-section">
                 <h3>Alumnos Seleccionados</h3>
                 
                 {alumnosSeleccionados.length === 0 ? (
-                  <div className="no-selection-message">
+                  <div className="preceptores-rectores-no-selection-message">
                     No hay alumnos seleccionados
                   </div>
                 ) : (
-                  <div className="selected-students-container">
+                  <div className="preceptores-rectores-selected-students-container">
                     {alumnosSeleccionados.map(alumno => (
-                      <div key={alumno.id_alumno} className="student-tag">
+                      <div key={alumno.id_alumno} className="preceptores-rectores-student-tag">
                         <span>
                           {alumno.nombre_alumno} {alumno.apellido_alumno} - {alumno.dni_alumno} - {mostrarGrado(alumno)}
                         </span>
                         <button
                           type="button"
-                          className="btn-remove"
+                          className="preceptores-rectores-btn-remove"
                           onClick={() => eliminarAlumno(alumno.id_alumno)}
                           aria-label="Eliminar alumno"
                         >
@@ -411,10 +410,10 @@ function SeleccionAlumnos() {
             </div>
 
             {/* Botones de navegación */}
-            <div className="navigation-buttons">
+            <div className="preceptores-rectores-navigation-buttons">
               <button 
                 type="button" 
-                className="form-btn btn-secondary"
+                className="preceptores-rectores-form-btn preceptores-rectores-btn-secondary"
                 onClick={handleVolverPanel} // ✅ USAR FUNCIÓN QUE NO LIMPIA DATOS
               >
                 ← Volver al Panel
@@ -429,7 +428,7 @@ function SeleccionAlumnos() {
             </div>
           </form>
 
-          <div className="info-panel">
+          <div className="preceptores-rectores-info-panel">
             <h4>📋 Proceso de Registro de Incidencia:</h4>
             <p>1. <strong>Paso actual:</strong> Seleccionar alumnos involucrados</p>
             <p>2. <strong>Siguiente paso:</strong> Completar detalles de la incidencia</p>

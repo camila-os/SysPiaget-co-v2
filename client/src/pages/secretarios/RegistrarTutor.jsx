@@ -20,6 +20,7 @@ function RegistrarTutor() {
         tutorData,
         tutorExistente,
         setTutorExistente,
+        setTutorData,
         resetRegistration, 
         completeRegistration, 
         goToStep 
@@ -30,6 +31,12 @@ function RegistrarTutor() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [serverErrors, setServerErrors] = useState({});
+
+    useEffect(() => {
+        if (tutorExistente !== undefined) {
+            console.log('Tutor existente preference:', tutorExistente);
+        }
+    }, [tutorExistente]);
 
     useEffect(() => {
         setError('');
@@ -64,13 +71,37 @@ function RegistrarTutor() {
         loadInitialData();
     }, [alumnoData]);
 
+    // ✅ NUEVA FUNCIÓN: Manejar parentesco creado
+    const handleParentescoCreado = (parentescoCreado) => {
+        console.log('🔄 PADRE: Parentesco creado, actualizando lista global:', parentescoCreado);
+        
+        // Actualizar la lista de parentescos en el estado principal
+        setParentescos(prev => {
+            const nuevaLista = [...prev, parentescoCreado];
+            console.log('📋 PADRE: Nueva lista de parentescos:', nuevaLista);
+            return nuevaLista;
+        });
+    };
+
     const handleTutorExistenteChange = (esExistente) => {
+        console.log('🔄 Cambiando tipo de tutor:', { 
+            de: tutorExistente ? 'existente' : 'nuevo', 
+            a: esExistente ? 'existente' : 'nuevo',
+            datosActuales: tutorData 
+        });
+        
+        // Solo limpiar si realmente está cambiando el tipo
+        if (tutorExistente !== esExistente) {
+            // Limpiar datos del tutor anterior
+            setTutorData(null, esExistente);
+            console.log('🧹 Datos del tutor limpiados al cambiar tipo');
+        }
+        
         setTutorExistente(esExistente);
     };
 
     const handleVolverAlumno = () => {
         goToStep(1);
-        navigate("/crear-alumno");
     };
 
     const handleCancelarProceso = () => {
@@ -84,13 +115,6 @@ function RegistrarTutor() {
         try {
             setLoading(true);
             setServerErrors({});
-
-            if (!alumnoData) {
-                alert('❌ Error: No hay datos del alumno. Regrese al formulario de alumno.');
-                navigate("/crear-alumno");
-                setLoading(false);
-                return;
-            }
 
             let tutorId;
 
@@ -114,7 +138,6 @@ function RegistrarTutor() {
                     return;
                 }
             }
-
             const datosCompletos = {
                 alumno: {
                     nombre_alumno: alumnoData.nombre_alumno,
@@ -165,7 +188,7 @@ function RegistrarTutor() {
     if (loading) {
         return (
             <div className='blank'>
-                <p>⏳ Cargando datos...</p>
+                <p> Cargando datos...</p>
                 <Button
                     variant="cancel"
                     type="outline"
@@ -206,7 +229,12 @@ function RegistrarTutor() {
             </div>
         );
     }
-
+    const generos = {
+        M: 'Masculino',
+        F: 'Femenino',
+        O: 'Otro'
+        };
+        
     return (
         <div className="page-container">
             <header className="page-header">
@@ -234,7 +262,7 @@ function RegistrarTutor() {
                         <p><strong>Nombre:</strong> {alumnoData.nombre_alumno} {alumnoData.apellido_alumno}</p>
                         <p><strong>DNI:</strong> {alumnoData.dni_alumno}</p>
                         <p><strong>Fecha Nacimiento:</strong> {new Date(alumnoData.fecha_nacimiento_alumno).toLocaleDateString()}</p>
-                        <p><strong>Género:</strong> {alumnoData.genero_alumno === 'M' ? 'Masculino' : 'Femenino'}</p>
+                        <p> <strong>Género:</strong> {generos[alumnoData.genero_alumno] || 'No especificado'} </p>
                     </div>
 
                     <div className="form-section">
@@ -264,6 +292,24 @@ function RegistrarTutor() {
                             </div>
                         </div>
 
+                        {tutorData && (
+                            <div className="tutor-type-info" style={{
+                                background: '#e3f2fd',
+                                padding: '8px',
+                                borderRadius: '4px',
+                                marginBottom: '15px',
+                                fontSize: '14px'
+                            }}>
+                                <strong>📝 {tutorExistente ? 'Tutor existente seleccionado' : 'Tutor nuevo en progreso'}</strong>
+                                {tutorExistente && tutorData.nombre_tutor && (
+                                    <span>: {tutorData.nombre_tutor} {tutorData.apellido_tutor}</span>
+                                )}
+                                {!tutorExistente && tutorData.nombre_tutor && (
+                                    <span>: {tutorData.nombre_tutor} {tutorData.apellido_tutor}</span>
+                                )}
+                            </div>
+                        )}
+
                         {tutorExistente ? (
                             <FormTutorExistente
                                 tutores={tutores}
@@ -272,14 +318,17 @@ function RegistrarTutor() {
                                 serverErrors={serverErrors}
                                 onVolver={handleVolverAlumno}
                                 onSubmit={onSubmit}
+                                onParentescoCreado={handleParentescoCreado} // ✅ PROP AGREGADA
                             />
                         ) : (
                             <FormTutorNuevo
-                                parentescos={parentescos}
-                                loading={loading}
-                                serverErrors={serverErrors}
-                                onVolver={handleVolverAlumno}
-                                onSubmit={onSubmit}
+                            parentescos={parentescos}
+                            loading={loading}
+                            serverErrors={serverErrors}
+                            onVolver={handleVolverAlumno}
+                            onSubmit={onSubmit}
+                            onParentescoCreado={handleParentescoCreado}
+                            alumnoDni={alumnoData?.dni_alumno} // Esto es importante
                             />
                         )}
                     </div>

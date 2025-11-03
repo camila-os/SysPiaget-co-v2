@@ -1,46 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
 
-:root {
-  /* Sistema de diseño - Colores */
-  --color-primary: #252861;
-  --color-secondary: #1a1c49;
-  --color-accent: #C41014;
-  --color-accent-hover: #E30613;
-  --color-gray: #495057;
-  --color-gray-hover: #6c757d;
-  --color-white: #ffffff;
-  --color-text-light: rgba(255, 255, 255, 0.9);
-  --color-success: #28a745;
-  --color-warning: #ffc107;
-  --color-danger: #dc3545;
-  --color-background: rgba(255, 255, 255, 0.98);
-  
-  /* Espaciados */
-  --spacing-xs: 7.5px;
-  --spacing-sm: 10px;
-  --spacing-md: 15px;
-  --spacing-lg: 20px;
-  --spacing-xl: 25px;
-  --spacing-xxl: 30px;
-  --spacing-xxxl: 35px;
-  
-  /* Tipografía */
-  --font-size-sm: 16.25px;
-  --font-size-base: 17.5px;
-  --font-size-lg: 20px;
-  --font-size-xl: 22.5px;
-  --font-size-xxl: 25px;
-  --font-size-xxxl: 27.5px;
-  
-  /* Border radius */
-  --border-radius-sm: 7.5px;
-  --border-radius-md: 10px;
-  
-  /* Transiciones */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-}
+
 
 /* CONTENEDOR PRINCIPAL - COMO HOME SECRETARIOS */
 .director-page {

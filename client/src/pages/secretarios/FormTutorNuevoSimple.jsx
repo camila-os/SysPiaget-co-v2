@@ -6,8 +6,9 @@ import {
   nameInputProps, 
   dniInputProps, 
   phoneInputProps, 
-  emailInputProps 
+  emailInputProps
 } from "../validations/tutorValidations.jsx";
+
 
 function FormTutorNuevoSimple({ loading, serverErrors, onVolver, onSubmit }) {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({

@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useRegistration } from "../../contexts/RegistrationContext";
 import { getAllGrados, getAllColegios, verificarDniAlumno } from '../../api/secretario.api';
-import { dniValidationRules, dniInputProps } from '../validations/dniValidations';
+import { dniInputProps, dniValidationRulesCompletoAlumno } from '../validations/dniValidations';
 import { nameValidationRules, nameInputProps, validateNameBase } from '../validations/nameValidations';
-import { fechaNacimientoValidationRules, calcularEdad } from '../validations/dateValidations';
+import { fechaNacimientoValidationRules, calcularEdad } from '../validations/dateValidations'; 
 import BuscadorColegios from './BuscadorColegios';
 import CrearColegioModal from './CrearColegioModal';
 import Perfil from "../../components/Perfil";
@@ -13,18 +13,52 @@ import Button from "../../components/Buttons/Buttons";
 import "../../style/RegistrarAlumno.css";
 
 const RegistrarAlumno = () => {
-  const { register, handleSubmit, formState: { errors }, setValue, trigger, watch } = useForm();
-  const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors, isValid }, setValue, trigger, watch } = useForm({
+    mode: "onChange"
+  });
   const { alumnoData, setAlumnoData, resetRegistration } = useRegistration();
+  const navigate = useNavigate();
   
   const [grados, setGrados] = useState([]);
   const [colegios, setColegios] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadError, setLoadError] = useState(null);
   const [mostrarModalCrear, setMostrarModalCrear] = useState(false);
+  const [colegioSeleccionado, setColegioSeleccionado] = useState(null);
+  const [datosCargados, setDatosCargados] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const fechaNacimiento = watch("fecha_nacimiento_alumno");
+  const idColegio = watch("id_colegio");
+
   const [edadCalculada, setEdadCalculada] = useState(null);
+
+  // Cargar datos guardados
+  useEffect(() => {
+    if (alumnoData && datosCargados) {
+      if (alumnoData.id_colegio) {
+        const colegio = colegios.find(c => c.id === alumnoData.id_colegio);
+        if (colegio) {
+          setColegioSeleccionado(colegio);
+        }
+      }
+
+      const formData = {
+        ...alumnoData,
+        dni_alumno: alumnoData.dni_alumno?.toString() || '',
+        id_grado: alumnoData.id_grado?.toString() || '',
+        id_colegio: alumnoData.id_colegio?.toString() || ''
+      };
+      
+      Object.keys(formData).forEach(key => {
+        if (formData[key] !== null && formData[key] !== undefined) {
+          setValue(key, formData[key]);
+        }
+      });
+      
+      trigger();
+    }
+  }, [alumnoData, datosCargados, colegios, setValue, trigger]);
 
   useEffect(() => {
     if (fechaNacimiento) {
@@ -35,7 +69,7 @@ const RegistrarAlumno = () => {
     }
   }, [fechaNacimiento]);
 
-  // CARGA DE DATOS INICIALES
+  // Cargar datos iniciales
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -46,37 +80,69 @@ const RegistrarAlumno = () => {
         ]);
         
         if (gradosRes.data) setGrados(gradosRes.data);
-        if (colegiosRes.data) setColegios(colegiosRes.data);
+        if (colegiosRes.data) {
+          setColegios(colegiosRes.data);
+        }
+        
+        setDatosCargados(true);
         
       } catch (error) {
         setLoadError('Error cargando datos: ' + error.message);
-        console.error('Error loading data:', error);
+        setDatosCargados(true);
       }
     };
     
     loadData();
   }, []);
 
-  // Manejar cuando se crea un colegio desde el modal
   const handleColegioCreado = async (colegioCreado) => {
     try {
-      setColegios(prev => [...prev, colegioCreado]);
-      setValue('id_colegio', colegioCreado.id, { shouldValidate: true });
+      setColegios(prev => {
+        const nuevaLista = [...prev, colegioCreado];
+        return nuevaLista;
+      });
+
+      setRefreshKey(prev => {
+        const nuevaKey = prev + 1;
+        return nuevaKey;
+      });
+
+      setValue('id_colegio', colegioCreado.id, { 
+        shouldValidate: true,
+        shouldDirty: true,
+        shouldTouch: true 
+      });
+      
+      setColegioSeleccionado(colegioCreado);
+
       await trigger('id_colegio');
+
       setMostrarModalCrear(false);
-      console.log('✅ Colegio creado y seleccionado:', colegioCreado);
+
     } catch (error) {
-      console.error('Error al seleccionar colegio creado:', error);
+      alert('Error al procesar el colegio creado');
     }
   };
 
-  // ENVÍO DEL FORMULARIO
+  const handleColegioSelect = (idColegio) => {
+    const colegio = colegios.find(c => c.id === idColegio);
+    setColegioSeleccionado(colegio);
+    setValue('id_colegio', idColegio, { 
+      shouldValidate: true 
+    });
+    trigger('id_colegio');
+  };
+
   const onSubmit = async (data) => {
     try {
       setLoading(true);
 
+      if (!data.id_colegio) {
+        alert('Debe seleccionar un colegio de procedencia');
+        return;
+      }
+
       const respuestaDni = await verificarDniAlumno(data.dni_alumno);
-      console.log("Respuesta verificación DNI:", respuestaDni.data);
       
       if (respuestaDni.data.existe) {
         alert('Ya existe un alumno con este DNI');
@@ -92,17 +158,14 @@ const RegistrarAlumno = () => {
       };
 
       setAlumnoData(alumnoDataForContext);
-      navigate("/RegistrarTutor");
 
     } catch (error) {
-      console.error("Error en onSubmit:", error);
       alert('Error: ' + (error.response?.data?.error || error.message));
     } finally {
       setLoading(false);
     }
   };
 
-  // CANCELAR REGISTRO
   const handleCancel = () => {
     if (window.confirm('¿Cancelar registro? Se perderán los datos.')) {
       resetRegistration();
@@ -110,7 +173,6 @@ const RegistrarAlumno = () => {
     }
   };
 
-  // RENDERIZADO
   return (
     <div className="page-container">
       <header className="page-header">
@@ -121,16 +183,16 @@ const RegistrarAlumno = () => {
         <div className='alumno-form-container'>
           <div className="form-header">
             <h2>Paso 1: Datos del Alumno</h2>
-            <Button
-              variant="cancel"
-              type="outline"
-              size="square"
-              onClick={handleCancel}
-              className="close-button"
-              title="Cancelar registro"
-            >
-              Cancelar
-            </Button>
+          <Button
+            variant="cancel"
+            type="outline"
+            size="square"
+            onClick={handleCancel}
+            className="close-button"
+            title="Cancelar registro"
+          >
+            {/* Dejar completamente vacío */}
+          </Button>
           </div>
 
           {loadError && (
@@ -168,7 +230,7 @@ const RegistrarAlumno = () => {
               <div className="form-group">
                 <label>DNI *</label>
                 <input
-                  {...register("dni_alumno", dniValidationRules)}
+                  {...register("dni_alumno",  dniValidationRulesCompletoAlumno)}
                   {...dniInputProps}
                   disabled={loading}
                 />
@@ -203,6 +265,7 @@ const RegistrarAlumno = () => {
                   <option value="">Seleccione</option>
                   <option value="M">Masculino</option>
                   <option value="F">Femenino</option>
+                  <option value="O">Otro</option>
                 </select>
                 {errors.genero_alumno && <span className="error">{errors.genero_alumno.message}</span>}
               </div>
@@ -211,9 +274,9 @@ const RegistrarAlumno = () => {
                 <label>Grado *</label>
                 <select 
                   {...register("id_grado", { required: "Grado requerido" })}
-                  disabled={loading || grados.length === 0}
+                  disabled={loading || !datosCargados}
                 >
-                  <option value="">Seleccione Grado</option>
+                  <option value="">{datosCargados ? "Seleccione Grado" : "Cargando grados..."}</option>
                   {grados.map(grado => (
                     <option key={grado.id_grado} value={grado.id_grado}>
                       {grado.nombre_grado} - {grado.asientos_disponibles} cupos
@@ -221,9 +284,6 @@ const RegistrarAlumno = () => {
                   ))}
                 </select>
                 {errors.id_grado && <span className="error">{errors.id_grado.message}</span>}
-                {grados.length === 0 && !loadError && (
-                  <span className="info">Cargando grados...</span>
-                )}
               </div>
 
               <div className="form-group">
@@ -231,7 +291,9 @@ const RegistrarAlumno = () => {
                   <label>Colegio Procedencia *</label>
                   <button
                     type="button"
-                    onClick={() => setMostrarModalCrear(true)}
+                    onClick={() => {
+                      setMostrarModalCrear(true);
+                    }}
                     className="btn-agregar-colegio"
                     title="Agregar nuevo colegio"
                     disabled={loading}
@@ -240,38 +302,29 @@ const RegistrarAlumno = () => {
                   </button>
                 </div>
                 
-                <BuscadorColegios
-                  colegios={colegios}
-                  onColegioSelect={(idColegio) => {
-                    console.log('Colegio seleccionado ID:', idColegio);
-                    setValue('id_colegio', idColegio, { 
-                      shouldValidate: true 
-                    });
-                  }}
-                  disabled={loading || colegios.length === 0}
-                />
+                {!datosCargados ? (
+                  <div className="loading-colegios">Cargando colegios...</div>
+                ) : (
+                  <>
+                    <BuscadorColegios
+                      key={`buscador-${refreshKey}`}
+                      colegios={colegios}
+                      onColegioSelect={handleColegioSelect}
+                      disabled={loading || colegios.length === 0}
+                      valorSeleccionado={colegioSeleccionado?.id}
+                    />
+                  </>
+                )}
                 
                 <input
                   type="hidden"
                   {...register("id_colegio", { 
                     required: "Debe seleccionar un colegio de la lista",
-                    validate: {
-                      colegioExistente: (value) => {
-                        if (!value) return "Colegio requerido";
-                        const colegioExiste = colegios.some(
-                          c => c.id === parseInt(value)
-                        );
-                        return colegioExiste || "El colegio seleccionado no es válido";
-                      }
-                    }
                   })}
                 />
                 
                 {errors.id_colegio && (
                   <span className="error">{errors.id_colegio.message}</span>
-                )}
-                {colegios.length === 0 && !loadError && (
-                  <span className="info">Cargando colegios...</span>
                 )}
               </div>
 
@@ -292,7 +345,7 @@ const RegistrarAlumno = () => {
                 type="solid"
                 size="large"
                 onClick={handleSubmit(onSubmit)}
-                disabled={loading}
+                disabled={loading || !isValid}
                 className="submit-button"
               >
                 {loading ? "Validando..." : "Siguiente Asignar Tutor"}
@@ -304,7 +357,9 @@ const RegistrarAlumno = () => {
 
       <CrearColegioModal
         isOpen={mostrarModalCrear}
-        onClose={() => setMostrarModalCrear(false)}
+        onClose={() => {
+          setMostrarModalCrear(false);
+        }}
         onColegioCreado={handleColegioCreado}
         colegiosExistentes={colegios}
       />

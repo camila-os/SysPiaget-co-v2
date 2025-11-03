@@ -4,58 +4,7 @@
 
 
 
-:root {
-  /* Sistema de diseño - Colores */
-  --color-primary: #252861;
-  --color-secondary: #1a1c49;
-  --color-accent: #C41014;
-  --color-accent-hover: #E30613;
-  --color-gray: #495057;
-  --color-gray-hover: #6c757d;
-  --color-white: #ffffff;
-  --color-success: #28a745;
-  --color-warning: #ffc107;
-  --color-danger: #dc3545;  /* ← ESTA LÍNEA DEBE ESTAR */
-  --color-background: rgba(255, 255, 255, 0.98);
-  --color-info-bg: #f0f8ff;
 
-  /* Sistema de diseño - Colores */
-  --color-primary: #252861;
-  --color-secondary: #1a1c49;
-  --color-accent: #C41014;
-  --color-accent-hover: #E30613;
-  --color-gray: #495057;
-  --color-gray-hover: #6c757d;
-  --color-white: #ffffff;
-  --color-success: #28a745;
-  --color-warning: #ffc107;
-  --color-danger: #dc3545;
-  --color-background: rgba(255, 255, 255, 0.98);
-  --color-info-bg: #f0f8ff;
-  
-  /* Sistema de diseño - Espaciados (optimizados para horizontalidad) */
-  --spacing-xs: 6px;
-  --spacing-sm: 8px;
-  --spacing-md: 12px;
-  --spacing-lg: 16px;
-  --spacing-xl: 20px;
-  --spacing-xxl: 24px;
-  
-  /* Sistema de diseño - Tipografía */
-  --font-size-sm: 14px;
-  --font-size-base: 15px;
-  --font-size-lg: 17px;
-  --font-size-xl: 19px;
-  --font-size-xxl: 21px;
-  
-  /* Border radius */
-  --border-radius-sm: 6px;
-  --border-radius-md: 8px;
-  
-  /* Transiciones */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-}
 
 /* CONTENEDOR PRINCIPAL - MÁS ANCHO */
 .registrar-tutor-container {

@@ -24,6 +24,24 @@ export const verificarDniAlumno = async (dni_alumno) => {
     throw error;
   }
 };
+// VERIFICACIÓN DE EMPLEADOS - AGREGAR ESTA FUNCIÓN
+export const verificarDniEmpleado = async (dni) => {
+  try {
+    const response = await api.get(`/secretarios/empleados/verificar-dni/${dni}/`);
+    return response;
+  } catch (error) {
+    // Si no existe el endpoint, asumimos que no hay empleado
+    if (error.response?.status === 404) {
+      return { 
+        data: { 
+          existe: false,
+          mensaje: 'DNI disponible (empleado no encontrado)'
+        } 
+      };
+    }
+    throw error;
+  }
+};
 
 export const updateAlumno = (id_alumno, alumnoData) => api.put(`/secretarios/alumnos/update/${id_alumno}/`, alumnoData);
 export const desactivarAlumnoByDni = (dni_alumno) => api.patch(`/secretarios/alumnos/${dni_alumno}/desactivar/`);
@@ -169,7 +187,7 @@ export const activarTutorByDni = (dni_tutor) => api.patch(`/secretarios/tutores/
 // PARENTESCOS
 export const getAllParentesco = () => api.get('/secretarios/parentescos/');
 export const crearParentesco = async (parentescoData) => {
-  const response = await api.post('/parentescos/crear/', parentescoData);
+  const response = await api.post('secretarios/parentescos/crear/', parentescoData);
   return response;
 };
 

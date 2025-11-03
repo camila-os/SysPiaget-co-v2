@@ -36,16 +36,16 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    min-height: calc(100vh - 68px); /* +13% */
+    min-height: calc(100vh - 68px);
 }
 
 /* FOOTER PRINCIPAL - DISEÑO MEJORADO */
 .footer {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background: linear-gradient(135deg, #252861 0%, #1a1c49 100%);
     color: white;
-    padding: 8px 0; /* Reducido para mejor alineación */
+    padding: 8px 0;
     width: 100%;
-    border-top: 2.5px solid var(--color-accent);
+    border-top: 2.5px solid #C41014;
     font-family: "Lexend", sans-serif;
     position: relative;
     left: 0;
@@ -58,14 +58,14 @@ html, body {
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 150 300px;
+    padding: 0 20px;
 }
 
 .footer-main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: px;
+    gap: 20px;
 }
 
 /* Información del footer */
@@ -78,7 +78,7 @@ html, body {
     font-size: 15.9px;
     letter-spacing: 0.34px;
     line-height: 1.5;
-    color: var(--color-text-light);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* Sección de redes sociales */
@@ -97,7 +97,7 @@ html, body {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: var(--color-white);
+    color: #ffffff;
     transition: all 0.3s ease;
     padding: 8px;
     border-radius: 0px;
@@ -153,11 +153,11 @@ html, body {
     
     .footer-text {
         font-size: 14.7px;
-        order: 2; /* Texto abajo en móviles */
+        order: 2;
     }
     
     .social-section {
-        order: 1; /* Iconos arriba en móviles */
+        order: 1;
     }
     
     .social-links {
@@ -248,13 +248,4 @@ html, body {
     min-height: calc(100vh - 68px);
     font-size: 1.81rem;
     color: #666;
-}
-
-/* Variables CSS si no están definidas globalmente */
-:root {
-    --color-primary: #252861;
-    --color-secondary: #1a1c49;
-    --color-accent: #C41014;
-    --color-white: #ffffff;
-    --color-text-light: rgba(255, 255, 255, 0.9);
 }

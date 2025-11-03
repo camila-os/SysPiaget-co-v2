@@ -12,12 +12,15 @@ router.register(r'asistencias', views.AsistenciaView, basename='asistencia')
 router.register(r'act-extracurriculares', views.ActExtracurricularView, basename='actextracurricular')
 router.register(r'actividades-grados', views.ActExtracurricularXGradoView, basename='actgrados')
 
-
 urlpatterns = [
     path('', include(router.urls)),
-    path('alumnos/', views.buscar_alumno_por_dni, name='buscar_alumno_por_dni'),
+    
+    # ✅ URLs EXISTENTES
+    path('alumnos/buscar/', views.buscar_alumno_por_dni, name='buscar_alumno_por_dni'),
     path('incidencias/listar/', views.listar_incidencias, name='listar_incidencias'),
     path('incidencias/<int:id_medida>/', views.detalle_incidencia, name='detalle_incidencia'),
     path('tipos-incidencias-completo/', views.tipos_incidencias_con_incidencias, name='tipos_incidencias_completo'),
     path('incidencias-por-tipo/<int:id_tipo_incidencia>/', views.incidencias_por_tipo, name='incidencias_por_tipo'),
+    path('alumnos/', views.todos_los_alumnos, name='todos-los-alumnos'),
+    path('alumnos/por-grado/<int:id_grado>/', views.alumnos_por_grado, name='alumnos-por-grado'),
 ]

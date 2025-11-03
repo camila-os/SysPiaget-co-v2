@@ -28,6 +28,9 @@ import ModificarAlumno from './pages/secretarios/ModificarAlumno';
 import DetalleTutor from "./pages/secretarios/DetalleTutor";
 import VincularTutorAlumno from './pages/secretarios/VincularTutorAlumno';
 
+// 🆕 IMPORTAR EL NUEVO COMPONENTE
+import RegistrationWizard from "./components/RegistrationWizard";
+
 // Importar otras páginas
 import Tutor from "./pages/tutor/tutor";
 import Profesor from "./pages/profesor/profesor";
@@ -161,6 +164,16 @@ function App() {
                     }
                   />
 
+                  {/* 🆕 NUEVA RUTA PARA EL PROCESO COMPLETO */}
+                  <Route
+                    path="/registrar-alumno-completo"
+                    element={
+                      <PrivateRouter role="secretario">
+                        <RegistrationWizard />
+                      </PrivateRouter>
+                    }
+                  />
+
                   {/* Rutas de DIRECTOR */}
                   <Route
                     path="/director"
@@ -239,4 +252,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

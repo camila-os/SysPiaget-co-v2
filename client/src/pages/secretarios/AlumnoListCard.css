@@ -1,0 +1,479 @@
+/* AlumnoListCards.css - VERSIÓN TABLA CON DISEÑO HORIZONTAL */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+
+
+
+/* CONTENEDOR PRINCIPAL */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  font-family: "Lexend", sans-serif;
+  background: var(--color-background);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: var(--spacing-md);
+}
+
+.header h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  font-weight: 700;
+  margin: 0;
+  flex: 1;
+}
+
+/* BARRA DE BÚSQUEDA */
+.search-bar {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 300px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1.5px solid var(--color-table-border);
+  border-radius: var(--border-radius-sm);
+  font-family: "Lexend", sans-serif;
+  font-size: var(--font-size-base);
+  transition: all var(--transition-fast);
+  background: var(--color-white);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(196, 16, 20, 0.1);
+}
+
+/* CONTADOR */
+.counter {
+  font-family: "Montserrat", sans-serif;
+  font-size: var(--font-size-sm);
+  color: var(--color-gray);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-info-bg);
+  border-radius: var(--border-radius-sm);
+  border-left: 3px solid var(--color-accent);
+}
+
+/* TABLA RESPONSIVE */
+.table-responsive {
+  overflow-x: auto;
+  border-radius: var(--border-radius-md);
+  border: 1.5px solid var(--color-table-border);
+  background: var(--color-white);
+}
+
+/* TABLA PRINCIPAL */
+.alumnos-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Lexend", sans-serif;
+  font-size: var(--font-size-sm);
+}
+
+/* ENCABEZADO DE LA TABLA */
+.alumnos-table thead {
+  background: var(--color-table-header);
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.alumnos-table th {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 2px solid var(--color-accent);
+  white-space: nowrap;
+}
+
+/* FILAS DE LA TABLA */
+.alumnos-table td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-table-border);
+  vertical-align: top;
+}
+
+.alumnos-table tbody tr {
+  transition: all var(--transition-fast);
+}
+
+.alumnos-table tbody tr:hover {
+  background: var(--color-table-hover);
+}
+
+.alumnos-table tbody tr.activo {
+  background: rgba(40, 167, 69, 0.02);
+}
+
+.alumnos-table tbody tr.inactivo {
+  background: rgba(108, 117, 125, 0.05);
+}
+
+/* ESTILOS PARA CELDAS ESPECÍFICAS */
+.alumnos-table td strong {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* LISTA DE TUTORES EN TABLA */
+.tutores-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.tutor-item-table {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: rgba(37, 40, 97, 0.05);
+  border-radius: var(--border-radius-sm);
+  border-left: 2px solid var(--color-primary);
+}
+
+.tutor-name {
+  font-family: "Lexend", sans-serif;
+  font-size: var(--font-size-sm);
+  color: var(--color-secondary);
+  flex: 1;
+}
+
+.tutor-actions-table {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.no-tutor {
+  font-style: italic;
+  color: var(--color-gray);
+  font-size: var(--font-size-sm);
+}
+
+/* BADGE DE ESTADO */
+.status-badge {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.active {
+  background: rgba(40, 167, 69, 0.15);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+}
+
+.status-badge.inactive {
+  background: rgba(108, 117, 125, 0.15);
+  color: var(--color-gray);
+  border: 1px solid var(--color-gray);
+}
+
+/* BOTONES DE ACCIÓN */
+.action-buttons {
+  display: flex;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+/* BOTONES BASE */
+.btn {
+  border: none;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 32px;
+  min-width: 32px;
+}
+
+.btn-sm {
+  height: 28px;
+  min-width: 28px;
+  padding: var(--spacing-xs);
+  font-size: 12px;
+}
+
+.btn-xs {
+  height: 24px;
+  min-width: 24px;
+  padding: 2px 4px;
+  font-size: 10px;
+}
+
+/* VARIANTES DE BOTONES */
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(37, 40, 97, 0.2);
+}
+
+.btn-secondary {
+  background: var(--color-gray);
+  color: var(--color-white);
+}
+
+.btn-secondary:hover {
+  background: var(--color-gray-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(108, 117, 125, 0.2);
+}
+
+.btn-success {
+  background: var(--color-success);
+  color: var(--color-white);
+}
+
+.btn-success:hover {
+  background: #218838;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(40, 167, 69, 0.2);
+}
+
+.btn-warning {
+  background: var(--color-warning);
+  color: var(--color-secondary);
+}
+
+.btn-warning:hover {
+  background: #e0a800;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(255, 193, 7, 0.2);
+}
+
+.btn-danger {
+  background: var(--color-danger);
+  color: var(--color-white);
+}
+
+.btn-danger:hover {
+  background: #c82333;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(220, 53, 69, 0.2);
+}
+
+.btn-info {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+.btn-info:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(196, 16, 20, 0.2);
+}
+
+.btn-clear {
+  background: var(--color-gray);
+  color: var(--color-white);
+  min-width: auto;
+  white-space: nowrap;
+}
+
+.btn-clear:hover {
+  background: var(--color-gray-hover);
+}
+
+/* ESTADO SIN RESULTADOS */
+.no-results {
+  text-align: center;
+  padding: var(--spacing-xl) !important;
+  font-family: "Montserrat", sans-serif;
+  color: var(--color-gray);
+  font-style: italic;
+  background: var(--color-info-bg);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 1100px;
+    padding: var(--spacing-md);
+  }
+  
+  .alumnos-table {
+    font-size: var(--font-size-sm);
+  }
+  
+  .alumnos-table th,
+  .alumnos-table td {
+    padding: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .header h1 {
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .search-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-input {
+    min-width: auto;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .btn {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-md);
+    margin: var(--spacing-sm);
+  }
+  
+  .table-responsive {
+    border: none;
+    border-radius: 0;
+  }
+  
+  .alumnos-table {
+    font-size: var(--font-size-sm);
+  }
+  
+  .alumnos-table thead {
+    display: none;
+  }
+  
+  .alumnos-table tbody tr {
+    display: block;
+    margin-bottom: var(--spacing-md);
+    border: 1.5px solid var(--color-table-border);
+    border-radius: var(--border-radius-sm);
+    padding: var(--spacing-md);
+    background: var(--color-white);
+  }
+  
+  .alumnos-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-table-border);
+    text-align: right;
+  }
+  
+  .alumnos-table td:last-child {
+    border-bottom: none;
+  }
+  
+  .alumnos-table td::before {
+    content: attr(data-label);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    font-size: var(--font-size-sm);
+    margin-right: var(--spacing-md);
+    white-space: nowrap;
+  }
+  
+  .tutores-list,
+  .action-buttons {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
+  
+  .header h1 {
+    font-size: var(--font-size-lg);
+  }
+  
+  .search-input {
+    padding: 10px;
+  }
+  
+  .btn {
+    padding: 8px 10px;
+    height: 30px;
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

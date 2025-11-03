@@ -3,7 +3,6 @@ import { createColegio } from '../../api/secretario.api';
 import { 
   validarNombreColegio, 
   validarNumeroColegio, 
-  validarFormularioCompleto,
   nombreColegioInputProps,
   numeroColegioInputProps 
 } from '../validations/colegioValidations';
@@ -30,6 +29,7 @@ const CrearColegioModal = ({
   // Resetear el form cuando se abre/cierra el modal
   useEffect(() => {
     if (isOpen) {
+      console.log('🔓 MODAL: Modal abierto, reseteando formulario');
       setFormData({
         nombre_colegio_procedencia: nombreSugerido,
         nro_colegio_procedencia: ''
@@ -86,6 +86,8 @@ const CrearColegioModal = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    console.log('🚀 MODAL: Iniciando envío del formulario');
+    
     // Validar todos los campos
     const errorNombre = validarNombreColegio(formData.nombre_colegio_procedencia, colegiosExistentes);
     const errorNumero = validarNumeroColegio(formData.nro_colegio_procedencia, colegiosExistentes);
@@ -97,6 +99,7 @@ const CrearColegioModal = ({
 
     // Si hay errores, no enviar
     if (errorNombre || errorNumero) {
+      console.log('❌ MODAL: Errores de validación:', { errorNombre, errorNumero });
       setError('Por favor corrige los errores en el formulario');
       return;
     }
@@ -115,15 +118,26 @@ const CrearColegioModal = ({
         datosEnvio.nro_colegio_procedencia = parseInt(formData.nro_colegio_procedencia);
       }
 
+      console.log('📤 MODAL: Enviando datos del colegio:', datosEnvio);
       const response = await createColegio(datosEnvio);
       const colegioCreado = response.data;
+      console.log('✅ MODAL: Colegio creado exitosamente:', colegioCreado);
 
-      // Cerrar modal y notificar
-      onColegioCreado(colegioCreado);
+      // ✅ VERIFICAR QUE EL CALLBACK EXISTE
+      console.log('🔄 MODAL: Verificando callback onColegioCreado:', typeof onColegioCreado);
+      
+      if (typeof onColegioCreado === 'function') {
+        console.log('📞 MODAL: Llamando a onColegioCreado con:', colegioCreado);
+        onColegioCreado(colegioCreado);
+      } else {
+        console.error('❌ MODAL: onColegioCreado NO es una función:', onColegioCreado);
+      }
+
+      console.log('🚪 MODAL: Cerrando modal');
       onClose();
 
     } catch (error) {
-      console.error('Error creando colegio:', error);
+      console.error('❌ MODAL: Error creando colegio:', error);
       setError(error.response?.data?.error || 'Error al crear el colegio');
     } finally {
       setCargando(false);
@@ -131,7 +145,12 @@ const CrearColegioModal = ({
   };
 
   // Si el modal no está abierto, no renderizar nada
-  if (!isOpen) return null;
+  if (!isOpen) {
+    console.log('🚫 MODAL: Modal cerrado, no renderizar');
+    return null;
+  }
+
+  console.log('🎨 MODAL: Renderizando modal');
 
   return (
     <div className="modal-overlay">
@@ -179,7 +198,7 @@ const CrearColegioModal = ({
               Número de Colegio (Opcional)
             </label>
             <input  
-              type="text" // Usamos text para mejor control
+              type="text"
               id="nro_colegio_procedencia"
               name="nro_colegio_procedencia"
               value={formData.nro_colegio_procedencia}

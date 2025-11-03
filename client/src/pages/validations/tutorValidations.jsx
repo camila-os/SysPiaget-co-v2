@@ -3,7 +3,7 @@ import {
   dniValidationRules, 
   dniInputProps,
   dniValidationRulesFormato 
-} from './dnitutorValidations.jsx';
+} from './dniTutorValidations.jsx';
 import { 
   phoneValidationRules, 
   phoneInputProps,

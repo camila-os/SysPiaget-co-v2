@@ -136,7 +136,7 @@ class Colegios_procedencia(models.Model):
     id = models.AutoField(primary_key=True)
     nro_colegio_procedencia = models.IntegerField(unique=True, blank=True, null=True)
     nombre_colegio_procedencia = models.CharField(max_length=150, blank=False, null=False)
-
+    
     class Meta:
         db_table = 'colegios_procedencia'
         managed = False
@@ -162,8 +162,12 @@ class AlumnoXGrado(models.Model):
     
     class Meta:
         db_table = 'alumnos_x_grados'
+        managed = False
         unique_together = ['id_alumno', 'id_grado']
-    
+
+
+
+
 class AlumnoXTutor(models.Model):
     id_alumno_x_tutor = models.AutoField(primary_key=True)
     id_tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE, db_column='id_tutor')

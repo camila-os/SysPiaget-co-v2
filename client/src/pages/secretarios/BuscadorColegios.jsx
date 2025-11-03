@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './BuscadorColegios.css';
-// Función para normalizar texto: minúsculas, sin acentos, y sin caracteres especiales
+
 const normalizarTexto = (texto) => {
   if (!texto) return '';
   return texto
@@ -16,11 +16,24 @@ const normalizarTexto = (texto) => {
 const BuscadorColegios = ({ 
   colegios, 
   onColegioSelect, 
-  disabled = false 
+  disabled = false,
+  valorSeleccionado = null  // ← NUEVA PROP para recibir el ID seleccionado
 }) => {
   const [filtro, setFiltro] = useState('');
   const [mostrarDropdown, setMostrarDropdown] = useState(false);
   const dropdownRef = useRef(null);
+
+  // ✅ NUEVO EFFECT: Actualizar el input cuando cambia el valorSeleccionado
+  useEffect(() => {
+    if (valorSeleccionado) {
+      const colegioSeleccionado = colegios.find(c => c.id === valorSeleccionado);
+      if (colegioSeleccionado) {
+        setFiltro(colegioSeleccionado.nombre_colegio_procedencia);
+      }
+    } else {
+      setFiltro(''); // Limpiar si no hay selección
+    }
+  }, [valorSeleccionado, colegios]);
 
   // Cerrar dropdown al hacer click fuera
   useEffect(() => {
@@ -102,7 +115,6 @@ const BuscadorColegios = ({
 
       {mostrarDropdown && (
         <div className="dropdown-colegios">
-          {/* Mostrar colegios encontrados */}
           {colegiosFiltrados.length > 0 ? (
             colegiosFiltrados.slice(0, 10).map(colegio => (
               <div

@@ -1,3 +1,4 @@
+// CrearParentescoModal.jsx - ACTUALIZAR con esta versión
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { crearParentesco } from '../../api/secretario.api';
@@ -8,7 +9,8 @@ const CrearParentescoModal = ({
   isOpen, 
   onClose, 
   onParentescoCreado,
-  parentescosExistentes = [] 
+  parentescosExistentes = [],
+  onParentescoSeleccionado // ✅ NUEVA PROP PARA SELECCIÓN AUTOMÁTICA
 }) => {
   const [nombreParentesco, setNombreParentesco] = useState('');
   const [loading, setLoading] = useState(false);
@@ -17,13 +19,10 @@ const CrearParentescoModal = ({
 
   useEffect(() => {
     if (isOpen) {
-      // Agregar el modal al body directamente
       document.body.appendChild(modalElement);
-      // Prevenir scroll del body cuando el modal está abierto
       document.body.style.overflow = 'hidden';
       
       return () => {
-        // Limpiar cuando el componente se desmonte o se cierre el modal
         if (document.body.contains(modalElement)) {
           document.body.removeChild(modalElement);
         }
@@ -58,7 +57,22 @@ const CrearParentescoModal = ({
         parentesco_nombre: nombreParentesco.trim()
       });
 
-      onParentescoCreado(response.data);
+      const nuevoParentesco = response.data;
+      
+      console.log('✅ Parentesco creado:', nuevoParentesco);
+      
+      // ✅ 1. Notificar al componente padre que se creó un nuevo parentesco
+      if (onParentescoCreado) {
+        onParentescoCreado(nuevoParentesco);
+      }
+      
+      // ✅ 2. Si existe el callback, seleccionar automáticamente el nuevo parentesco
+      if (onParentescoSeleccionado) {
+        console.log('🎯 Ejecutando onParentescoSeleccionado:', nuevoParentesco);
+        onParentescoSeleccionado(nuevoParentesco);
+      }
+      
+      // ✅ 3. Cerrar modal y limpiar
       setNombreParentesco('');
       onClose();
       
@@ -119,8 +133,8 @@ const CrearParentescoModal = ({
 
           <div className="modal-actions">
             <Button
-              variant="cancel"
-              type="outline"
+              variant="back"
+              type="solid"
               onClick={handleClose}
               disabled={loading}
             >

@@ -4,28 +4,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
 
-:root {
-  /* Sistema de colores unificado */
-  --color-primary: #252861;
-  --color-secondary: #1a1c49;
-  --color-accent: #C41014;
-  --color-white: #ffffff;
-  --color-text-light: rgba(255, 255, 255, 0.9);
-  
-  /* Transiciones */
-  --transition-normal: 0.3s ease;
-}
-
 /* ==============================
    HEADER / PERFIL MEJORADO
 ============================== */
 .header-perf {
-  background-color: var(--color-primary);
+  background-color: #252861;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100px;
-  border-bottom: 5px solid var(--color-accent);
+  border-bottom: 5px solid #C41014;
   position: relative;
   z-index: 100;
   font-family: 'Montserrat', sans-serif;
@@ -60,7 +48,7 @@
   flex-direction: column;
   justify-content: center;
   line-height: 1.05;
-  color: var(--color-white);
+  color: #ffffff;
 }
 
 .instituto {

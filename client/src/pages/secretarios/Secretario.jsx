@@ -1,3 +1,4 @@
+// src/pages/secretarios/Secretario.jsx
 import { useNavigate } from "react-router";
 import Perfil from "../../components/Perfil";   
 import "../../style/Secretario.css";
@@ -19,7 +20,6 @@ function HomeSecretarios() {
           <div className="geometric-shape shape6"></div>
           <div className="geometric-shape shape7"></div>
           <div className="geometric-shape shape8"></div>
-
         </div>
 
         <div className="hero-content">
@@ -30,10 +30,10 @@ function HomeSecretarios() {
 
       <section className="opciones-secretario">
         <button
-          onClick={() => navigate("/crear-alumno")}
+          onClick={() => navigate("/registrar-alumno-completo")} // ✅ NUEVA RUTA
           className="btn-opcion rojo"
         >
-           Registrar Alumno
+           Registrar Alumno Completo
         </button>
         <button
           onClick={() => navigate("/ListaAlumnos")}
@@ -45,7 +45,7 @@ function HomeSecretarios() {
           onClick={() => navigate("/registrar-tutor")}
           className="btn-opcion verde"
         >
-           Registrar Tutor
+           Registrar Tutor Independiente
         </button>
         <button
           onClick={() => navigate("/ListaTutores")}

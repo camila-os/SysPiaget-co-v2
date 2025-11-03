@@ -204,3 +204,51 @@ def tipos_incidencias_con_incidencias(request):
         return Response(data)
     except Exception as e:
         return Response({'error': str(e)}, status=500)
+@api_view(['GET'])
+def todos_los_alumnos(request):
+    """Obtener todos los alumnos - SOLO PARA PRECEPTORES"""
+    try:
+        alumnos = Alumno.objects.all()
+        serializer = AlumnoSerializer(alumnos, many=True)
+        
+        return Response({
+            'count': alumnos.count(),
+            'alumnos': serializer.data
+        })
+        
+    except Exception as e:
+        return Response(
+            {'error': f'Error al obtener alumnos: {str(e)}'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+@api_view(['GET'])
+def alumnos_por_grado(request, id_grado):
+    """Obtener todos los alumnos de un grado específico - SOLO PARA PRECEPTORES"""
+    try:
+        # Importar el modelo de relación alumno-grado
+        from apps.secretarios.models import AlumnoXGrado
+        
+        # Filtrar alumnos que tienen relación activa con el grado especificado
+        alumnos_grado = AlumnoXGrado.objects.filter(
+            id_grado=id_grado,
+            activo=True
+        ).select_related('id_alumno', 'id_grado')
+        
+        # Extraer los alumnos de las relaciones
+        alumnos = [relacion.id_alumno for relacion in alumnos_grado]
+        
+        serializer = AlumnoSerializer(alumnos, many=True)
+        
+        return Response({
+            'grado_id': id_grado,
+            'grado_nombre': alumnos_grado[0].id_grado.nombre_grado if alumnos_grado else '',
+            'count': len(alumnos),
+            'alumnos': serializer.data
+        })
+        
+    except Exception as e:
+        return Response(
+            {'error': f'Error al obtener alumnos por grado: {str(e)}'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )

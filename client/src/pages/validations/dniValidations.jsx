@@ -1,5 +1,6 @@
 // src/validations/dniValidations.js
 import { verificarDniAlumno } from '../../api/secretario.api';
+import { validarDniAlumnoLogic } from './dniValidationLogic.jsx';
 
 // Función base para validar formato (reutilizable)
 const validateDNIFormatoBase = (value) => {
@@ -77,4 +78,32 @@ export const dniValidationRules = {
 export const dniValidationRulesFormato = {
   required: "DNI requerido",
   validate: validateDNIFormato
+};
+
+// ✅ NUEVAS EXPORTACIONES:
+
+// Validación SUPER COMPLETA (formato + todas las validaciones de negocio)
+export const validateDNICompletoAlumno = async (value) => {
+  // Primero validar formato
+  const formatoValido = validateDNIFormatoBase(value);
+  if (formatoValido !== true) return formatoValido;
+
+  // Luego validar todas las reglas de negocio
+  try {
+    const errores = await validarDniAlumnoLogic(value);
+    if (errores.length > 0) {
+      return errores[0];
+    }
+  } catch (error) {
+    console.error('Error en validación completa DNI:', error);
+    return "Error verificando el DNI";
+  }
+  
+  return true;
+};
+
+// Validación SUPER COMPLETA para alumno
+export const dniValidationRulesCompletoAlumno = {
+  required: "DNI requerido",
+  validate: validateDNICompletoAlumno
 };
